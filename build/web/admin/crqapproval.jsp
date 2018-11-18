@@ -1,18 +1,23 @@
 <%-- 
-    Document   : admin viewcash
-    Created on : Nov 7, 2014, 3:05:39 PM
+    Document   : crqapproval
+    Created on : Nov 7, 2014, 3:37:35 PM
     Author     : U
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="bean.User" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:if test="${sessionScope.adminprofile == null}">
+<c:if test="${sessionScope.adminprofile != null}">
     <% response.sendRedirect(request.getContextPath() + "/admin/terminate.html"); %>
 </c:if>
+
+<jsp:useBean id="crq" class="bean.CashRequest" scope="page">
+    <jsp:setProperty name="crq" property="login" value="${param.login}"/>
+    <jsp:setProperty name="crq" property="symbol" value="${param.symbol}"/>
+    <jsp:setProperty name="crq" property="amount" value="${param.amount}"/>
+    <jsp:setProperty name="crq" property="requestId" value="${param.requestid}"/>
+</jsp:useBean>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +29,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Cash - Admin</title>
+    <title>Cash - Admin - Cash Request Approval</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -102,54 +107,48 @@
       </div>
       
       <div class="well">
+        <h3>Cash Request Approval</h3>
+        <p>&nbsp;</p>
         <div class="row">
-            <div class="col-md-12"> 
-                <h3>user</h3>                
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover ">
-                        <thead>
-                            <tr>
-                                <th>login</th>
-                                <th>password</th>
-                                <th>usertype</th>
-                                <th>fullname</th>
-                                <th>image</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- <c:set var="amountinprocess" scope="page" value="${0}"/> -->
-                            <!-- <c:set var="amountapprove" scope="page" value="${0}"/> -->
-                            <c:forEach items="${sessionScope.userList}" var="i" varStatus="loop">                                
-                                <tr>
-                                    <td><c:out value="${loop.index + 1}" /></td>    
-                                    <td><c:out value="${i.login}" /></td>
-                                    <td><c:out value="${i.password}" /></td>
-                                    <td><c:out value="${i.userType}" /></td>
-                                    <td><c:out value="${i.fullName}" /></td>
-                                    <td><c:out value="${i.image}" /></td>
-                                    
-                                    <!-- <c:if test="${currentrqc.status == 'in process'}">
-                                        <c:url value="crqapproval.jsp" var="displayURL">
-                                            <c:param name="requestid" value="${currentrqc.requestId}" /> 
-                                            <c:param name="login" value="${currentrqc.login}" /> 
-                                            <c:param name="symbol" value="${currentrqc.symbol}" />
-                                            <c:param name="amount" value="${currentrqc.amount}" />
-                                        </c:url>
-                                        <td><a href="<c:out value='${displayURL}' />"><c:out value="${currentrqc.status}" /></a></td>
-                                    </c:if> -->
-                                            
-                                    <!-- <c:if test="${currentrqc.status == 'approve'}">
-                                        <td><c:out value="${currentrqc.status}" /></td>
-                                    </c:if>
-                                        
-                                    <c:if test="${currentrqc.status == 'rejected'}">
-                                        <td><c:out value="${currentrqc.status}" /></td>
-                                    </c:if>     -->
-                                </tr>
-                            </c:forEach>
-                        </tbody> 
-                    </table>    
-                </div> <!-- table-responsive -->
+            <div class="col-md-6">
+                <form class="form-horizontal" action="/cash/admin/CashRequestApprovalServlet" method="post">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="login" class="col-lg-2 control-label">Login</label>
+                            <div class="col-lg-10">
+                                <input class="form-control" id="login" name="login" value="<jsp:getProperty name="crq" property="login"/>" type="text" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="currency" class="col-lg-2 control-label">Currency</label>
+                            <div class="col-lg-10">
+                                <input class="form-control" id="currency" name="currency" value="<jsp:getProperty name="crq" property="symbol"/>" type="text" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount" class="col-lg-2 control-label">Amount</label>
+                            <div class="col-lg-10">
+                                <input class="form-control" id="amount" name="amount" value="<jsp:getProperty name="crq" property="amount"/>" type="text" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="approvalstatus" class="col-lg-2 control-label">Approval</label>
+                            <div class="col-lg-10">
+                                <select class="form-control" id="approvalstatus" name="approvalstatus" required>
+                                    <option >No</option>
+                                    <option >Yes</option>
+                                </select>
+                            </div>
+                        </div>       
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <input type="hidden" name="requestid" value="<jsp:getProperty name="crq" property="requestId"/>">
+                                <button class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Submit</button>
+                            </div>
+                        </div>                             
+                    </fieldset>
+                </form>                
             </div>
         </div>
       </div>      
@@ -159,6 +158,7 @@
       </footer>
 
     </div> <!-- /container -->
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

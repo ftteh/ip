@@ -1,18 +1,21 @@
 <%-- 
-    Document   : admin viewcash
-    Created on : Nov 7, 2014, 3:05:39 PM
-    Author     : U
+    Document   : editcurrency
+    Created on : Nov 6, 2014, 3:25:36 PM
+    Author     : MSI
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="bean.User" %>
+<%@ page import="bean.Currency" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:if test="${sessionScope.adminprofile == null}">
+<c:if test="${sessionScope.adminprofile != null}">
     <% response.sendRedirect(request.getContextPath() + "/admin/terminate.html"); %>
 </c:if>
+
+<jsp:useBean id="currencyedit" class="bean.Currency" scope="session" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +27,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Cash - Admin</title>
+    <title>Cash - Admin - Edit Currency</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -60,8 +63,8 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="/cash/admin/ViewUsersServlet"><span class="glyphicon glyphicon-th-list"></span> Manage Users</a></li>
-            <li class="active"><a href="/cash/admin/ViewCashServlet"><span class="glyphicon glyphicon-th-list"></span> View Cash Request</a></li>
-            <li><a href="/cash/admin/ManageBackendDataServlet"><span class="glyphicon glyphicon-th-list"></span> Manage Backend Data</a></li> 
+            <li><a href="/cash/admin/ViewCashServlet"><span class="glyphicon glyphicon-th-list"></span> View Cash Request</a></li>
+            <li class="active"><a href="/cash/admin/ManageBackendDataServlet"><span class="glyphicon glyphicon-th-list"></span> Manage Backend Data</a></li> 
           </ul>
           <ul class="nav navbar-nav navbar-right">
       		<li class="dropdown">
@@ -102,63 +105,44 @@
       </div>
       
       <div class="well">
+          
+        <h3>Edit Currency</h3>
+        <p>&nbsp;</p>
         <div class="row">
-            <div class="col-md-12"> 
-                <h3>user</h3>                
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover ">
-                        <thead>
-                            <tr>
-                                <th>login</th>
-                                <th>password</th>
-                                <th>usertype</th>
-                                <th>fullname</th>
-                                <th>image</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- <c:set var="amountinprocess" scope="page" value="${0}"/> -->
-                            <!-- <c:set var="amountapprove" scope="page" value="${0}"/> -->
-                            <c:forEach items="${sessionScope.userList}" var="i" varStatus="loop">                                
-                                <tr>
-                                    <td><c:out value="${loop.index + 1}" /></td>    
-                                    <td><c:out value="${i.login}" /></td>
-                                    <td><c:out value="${i.password}" /></td>
-                                    <td><c:out value="${i.userType}" /></td>
-                                    <td><c:out value="${i.fullName}" /></td>
-                                    <td><c:out value="${i.image}" /></td>
-                                    
-                                    <!-- <c:if test="${currentrqc.status == 'in process'}">
-                                        <c:url value="crqapproval.jsp" var="displayURL">
-                                            <c:param name="requestid" value="${currentrqc.requestId}" /> 
-                                            <c:param name="login" value="${currentrqc.login}" /> 
-                                            <c:param name="symbol" value="${currentrqc.symbol}" />
-                                            <c:param name="amount" value="${currentrqc.amount}" />
-                                        </c:url>
-                                        <td><a href="<c:out value='${displayURL}' />"><c:out value="${currentrqc.status}" /></a></td>
-                                    </c:if> -->
-                                            
-                                    <!-- <c:if test="${currentrqc.status == 'approve'}">
-                                        <td><c:out value="${currentrqc.status}" /></td>
-                                    </c:if>
-                                        
-                                    <c:if test="${currentrqc.status == 'rejected'}">
-                                        <td><c:out value="${currentrqc.status}" /></td>
-                                    </c:if>     -->
-                                </tr>
-                            </c:forEach>
-                        </tbody> 
-                    </table>    
-                </div> <!-- table-responsive -->
+            <div class="col-md-6">
+                <form class="form-horizontal" action="/cash/admin/EditCurrencyProcessServlet" method="post">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="login" class="col-lg-2 control-label">Name</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" id="name" name="name" value="<jsp:getProperty name="currencyedit" property="name"/>" type="text" required>
+                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-lg-2 control-label">Symbol</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" id="symbol" name="symbol" value="<jsp:getProperty name="currencyedit" property="symbol"/>" type="text" required>
+                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <input type="hidden" name="id" value="<jsp:getProperty name="currencyedit" property="id"/>">
+                                <button class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Submit</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>                
             </div>
-        </div>
-      </div>      
+        </div>                    
+      </div>
       
       <footer>
       	<p>&copy; RBK 2014 - SCJ/SCSJ 2303/3303</p>
       </footer>
 
     </div> <!-- /container -->
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

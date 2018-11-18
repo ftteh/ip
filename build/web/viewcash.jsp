@@ -1,18 +1,22 @@
 <%-- 
-    Document   : admin viewcash
-    Created on : Nov 7, 2014, 3:05:39 PM
+    Document   : viewcash
+    Created on : Nov 7, 2014, 12:28:32 PM
     Author     : U
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="bean.User" %>
+<%@ page import="bean.CashRequest" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:if test="${sessionScope.adminprofile == null}">
-    <% response.sendRedirect(request.getContextPath() + "/admin/terminate.html"); %>
+
+<c:if test="${sessionScope.memberprofile != null}">
+    <% response.sendRedirect(request.getContextPath() + "/terminate.html"); %>
 </c:if>
+
+<jsp:useBean id="memberprofile" class="bean.User" scope="session" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +28,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Cash - Admin</title>
+    <title>Cash - Member - View Cash</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -59,23 +63,19 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/cash/admin/ViewUsersServlet"><span class="glyphicon glyphicon-th-list"></span> Manage Users</a></li>
-            <li class="active"><a href="/cash/admin/ViewCashServlet"><span class="glyphicon glyphicon-th-list"></span> View Cash Request</a></li>
-            <li><a href="/cash/admin/ManageBackendDataServlet"><span class="glyphicon glyphicon-th-list"></span> Manage Backend Data</a></li> 
+            <li><a href="/cash/GetCashServlet"><span class="glyphicon glyphicon-usd"></span> Get Cash</a></li>
+            <li class="active"><a href="/cash/MemberViewCashServlet"><span class="glyphicon glyphicon-th-list"></span> View Cash</a></li> 
           </ul>
           <ul class="nav navbar-nav navbar-right">
       		<li class="dropdown">
-		        <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Welcome 
-                            <c:if test="${sessionScope.adminprofile != null}">
-                                <jsp:useBean id="adminprofile" class="bean.User" scope="session" />
-                                <span style="color:#FFFF00"><jsp:getProperty name="adminprofile" property="fullName"/></span>
-                            </c:if> 
-                            (Admin) <b class="caret"></b></a>
+		        <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Welcome
+                            <span style="color:#FFFF00"><jsp:getProperty name="memberprofile" property="fullName"/></span>
+                            (Member) <b class="caret"></b></a>
 			        <ul class="dropdown-menu">
-			          <li><a href="/cash/admin/UserProfileServlet"><span class="glyphicon glyphicon-user"></span> User Profile</a></li>
-			          <li><a href="/cash/admin/SettingServlet"><span class="glyphicon glyphicon-cog"></span> Setting</a></li>
+			          <li><a href="/cash/memberprofile.jsp"><span class="glyphicon glyphicon-user"></span> User Profile</a></li>
+			          <li><a href="/cash/MemberSettingServlet"><span class="glyphicon glyphicon-cog"></span> Setting</a></li>
 			          <li class="divider"></li>
-			          <li><a href="/cash/admin/logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+			          <li><a href="/cash/logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			        </ul>
 		  	</li>
           </ul>
@@ -103,54 +103,53 @@
       
       <div class="well">
         <div class="row">
-            <div class="col-md-12"> 
-                <h3>user</h3>                
+            <div class="col-md-6"> 
+                <h3>Cash Request History/Status</h3>                
                 <div class="table-responsive">
                     <table class="table table-striped table-hover ">
                         <thead>
                             <tr>
-                                <th>login</th>
-                                <th>password</th>
-                                <th>usertype</th>
-                                <th>fullname</th>
-                                <th>image</th>
+                                <th>Index</th>
+                                <th>Currency</th>
+                                <th>Amount</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- <c:set var="amountinprocess" scope="page" value="${0}"/> -->
-                            <!-- <c:set var="amountapprove" scope="page" value="${0}"/> -->
-                            <c:forEach items="${sessionScope.userList}" var="i" varStatus="loop">                                
+                            <c:set var="amountinprocess" scope="page" value="${0}"/>
+                            <c:set var="amountapprove" scope="page" value="${0}"/>
+                            <c:set var="amountrejected" scope="page" value="${0}"/>
+                            <c:forEach items="${sessionScope.rqclist}" var="currentrqc" varStatus="loop">                                
                                 <tr>
-                                    <td><c:out value="${loop.index + 1}" /></td>    
-                                    <td><c:out value="${i.login}" /></td>
-                                    <td><c:out value="${i.password}" /></td>
-                                    <td><c:out value="${i.userType}" /></td>
-                                    <td><c:out value="${i.fullName}" /></td>
-                                    <td><c:out value="${i.image}" /></td>
-                                    
-                                    <!-- <c:if test="${currentrqc.status == 'in process'}">
-                                        <c:url value="crqapproval.jsp" var="displayURL">
-                                            <c:param name="requestid" value="${currentrqc.requestId}" /> 
-                                            <c:param name="login" value="${currentrqc.login}" /> 
-                                            <c:param name="symbol" value="${currentrqc.symbol}" />
-                                            <c:param name="amount" value="${currentrqc.amount}" />
-                                        </c:url>
-                                        <td><a href="<c:out value='${displayURL}' />"><c:out value="${currentrqc.status}" /></a></td>
-                                    </c:if> -->
-                                            
-                                    <!-- <c:if test="${currentrqc.status == 'approve'}">
-                                        <td><c:out value="${currentrqc.status}" /></td>
+                                    <td><c:out value="${loop.index + 1}" /></td>       
+                                    <td><c:out value="${currentrqc.symbol}" /></td>
+                                    <td><c:out value="${currentrqc.amount}" /></td>
+                                    <td><c:out value="${currentrqc.status}" /></td>
+                                    <c:if test="${currentrqc.status == 'in process'}">
+                                        <c:set var="amountinprocess" scope="page" value="${amountinprocess + currentrqc.amount}"/>
                                     </c:if>
-                                        
+                                    
+                                    <c:if test="${currentrqc.status == 'approve'}">
+                                        <c:set var="amountapprove" scope="page" value="${amountapprove + currentrqc.amount}"/>
+                                    </c:if>
+                                    
                                     <c:if test="${currentrqc.status == 'rejected'}">
-                                        <td><c:out value="${currentrqc.status}" /></td>
-                                    </c:if>     -->
+                                        <c:set var="amountrejected" scope="page" value="${amountrejected + currentrqc.amount}"/>
+                                    </c:if>
                                 </tr>
                             </c:forEach>
                         </tbody> 
                     </table>    
                 </div> <!-- table-responsive -->
             </div>
+            <div class="col-md-6">                
+                <h3>Cash Request Informations</h3>
+                <div class="well">
+                Total in-process cash request: <c:out value="${amountinprocess}"/><br />
+                Total approve cash request: <c:out value="${amountapprove}"/><br />
+                Total rejected cash request: <c:out value="${amountrejected}"/>
+                </div>
+            </div>     
         </div>
       </div>      
       
@@ -159,6 +158,7 @@
       </footer>
 
     </div> <!-- /container -->
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
