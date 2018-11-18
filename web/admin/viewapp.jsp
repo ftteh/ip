@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="bean.User" %>
+<%@ page import="bean.Application" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -107,27 +108,24 @@
                         <thead>
                             <tr>
                                 <th>index</th>
-                                <th>login</th>
-                                <th>password</th>
-                                <th>usertype</th>
-                                <th>fullname</th>
-                                <th>image</th>
-                                <th>delete</th>
+                                <th>id</th>
+                                <th>applicant</th>
+                                <th>approval</th>
+                                <th>room</th>
                             </tr>
                         </thead>
                         <tbody>
                             <!-- <c:set var="amountinprocess" scope="page" value="${0}"/> -->
                             <!-- <c:set var="amountapprove" scope="page" value="${0}"/> -->
-                            <c:forEach items="${sessionScope.userList}" var="i" varStatus="loop">                                
+                            <c:forEach items="${sessionScope.appList}" var="i" varStatus="loop">                                
                                 <tr>
                                     <td><c:out value="${loop.index + 1}" /></td>    
-                                    <td><c:out value="${i.login}" /></td>
-                                    <td><c:out value="${i.password}" /></td>
-                                    <td><c:out value="${i.userType}" /></td>
-                                    <td><c:out value="${i.fullName}" /></td>
-                                    <td><c:out value="${i.image}" /></td>
-                                    <c:url value="deleteUser" var="displayURL">
-                                        <c:param name="login" value="${i.login}" /> 
+                                    <td><c:out value="${i.id}" /></td>
+                                    <td><c:out value="${i.applicant}" /></td>
+                                    <td><c:out value="${i.approval}" /></td>
+                                    <td><c:out value="${i.room}" /></td>
+                                    <c:url value="deleteApp" var="displayURL">
+                                        <c:param name="id" value="${i.id}" /> 
                                     </c:url>
                                     <td><a href="<c:out value='${displayURL}' />"><span class="glyphicon glyphicon-remove">remove</span></a></td>
 

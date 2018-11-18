@@ -4,6 +4,7 @@
  */
 package admin;
 
+import bean.Application;
 import bean.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -57,7 +58,7 @@ public class viewApp extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
-        ArrayList rqcList = new ArrayList();
+        ArrayList appList = new ArrayList();
 
         String sqlQuery = "SELECT * FROM application";
         System.out.println(sqlQuery);
@@ -67,22 +68,24 @@ public class viewApp extends HttpServlet {
 
             while (rs.next()) {
 
-                String id= rs.getString("id");
-                String applicant= rs.getString("applicant");
-                String approval= rs.getString("approval");
-                String room= rs.getString("room");
+                String id = rs.getString("id");
+                String applicant = rs.getString("applicant");
+                String approval = rs.getString("approval");
+                String room = rs.getString("room");
 
-                out.println(id);
-                out.println(applicant);
-                out.println(approval);
-                out.println(room);
+                Application application = new Application();
+                application.setId(id);
+                application.setApplicant(applicant);
+                application.setApproval(approval);
+                application.setRoom(room);
+                appList.add(application);
 
             }
         } catch (SQLException ex) {
         }
 
-        // session.setAttribute("adminrqclist", rqcList);
-        // response.sendRedirect(request.getContextPath() + "/admin/viewcash.jsp");
+        session.setAttribute("appList", appList);
+        response.sendRedirect(request.getContextPath() + "/admin/viewapp.jsp");
 
     }
 

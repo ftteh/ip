@@ -5,7 +5,6 @@
 package admin;
 
 import bean.Room;
-import bean.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -57,8 +56,7 @@ public class viewRoom extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        PrintWriter out = response.getWriter();
-        ArrayList rqcList = new ArrayList();
+        ArrayList roomList = new ArrayList();
 
         String sqlQuery = "SELECT * FROM room";
         System.out.println(sqlQuery);
@@ -75,19 +73,22 @@ public class viewRoom extends HttpServlet {
                 String college = rs.getString("college");
                 String owner = rs.getString("owner");
 
-                out.println(rid);
-                out.println(status);
-                out.println(fm);
-                out.println(type);
-                out.println(college);
-                out.println(owner);
+                
+                Room room = new Room();
+                room.setRid(rid);
+                room.setStatus(status);
+                room.setFm(fm);
+                room.setType(type);
+                room.setCollege(college);
+                room.setOwner(owner);
+                roomList.add(room);
 
             }
         } catch (SQLException ex) {
         }
 
-        // session.setAttribute("adminrqclist", rqcList);
-        // response.sendRedirect(request.getContextPath() + "/admin/viewcash.jsp");
+        session.setAttribute("roomList", roomList);
+        response.sendRedirect(request.getContextPath() + "/admin/viewroom.jsp");
 
     }
 

@@ -55,21 +55,18 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="home.jsp"><span class="glyphicon glyphicon-home"></span> <span style="color:#FFFF00">CashWeb</span></a>
+          <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span> <span style="color:#FFFF00">CashWeb</span></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/cash/admin/ViewUsersServlet"><span class="glyphicon glyphicon-th-list"></span> Manage Users</a></li>
-            <li class="active"><a href="/cash/admin/ViewCashServlet"><span class="glyphicon glyphicon-th-list"></span> View Cash Request</a></li>
-            <li><a href="/cash/admin/ManageBackendDataServlet"><span class="glyphicon glyphicon-th-list"></span> Manage Backend Data</a></li> 
+            <li><a href="/cash/admin/viewUser"><span class="glyphicon glyphicon-th-list"></span>Manage Users</a></li>
+            <li><a href="/cash/admin/viewRoom"><span class="glyphicon glyphicon-th-list"></span>Manage Room</a></li>
+            <li><a href="/cash/admin/viewApp"><span class="glyphicon glyphicon-th-list"></span>Manage Applications</a></li> 
           </ul>
           <ul class="nav navbar-nav navbar-right">
       		<li class="dropdown">
 		        <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Welcome 
-                            <c:if test="${sessionScope.adminprofile != null}">
-                                <jsp:useBean id="adminprofile" class="bean.User" scope="session" />
-                                <span style="color:#FFFF00"><jsp:getProperty name="adminprofile" property="fullName"/></span>
-                            </c:if> 
+                            <span style="color:#FFFF00"><jsp:getProperty name="adminprofile" property="fullName"/></span>
                             (Admin) <b class="caret"></b></a>
 			        <ul class="dropdown-menu">
 			          <li><a href="/cash/admin/UserProfileServlet"><span class="glyphicon glyphicon-user"></span> User Profile</a></li>
@@ -109,11 +106,13 @@
                     <table class="table table-striped table-hover ">
                         <thead>
                             <tr>
+                                <th>index</th>
                                 <th>login</th>
                                 <th>password</th>
                                 <th>usertype</th>
                                 <th>fullname</th>
                                 <th>image</th>
+                                <th>delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -127,6 +126,11 @@
                                     <td><c:out value="${i.userType}" /></td>
                                     <td><c:out value="${i.fullName}" /></td>
                                     <td><c:out value="${i.image}" /></td>
+                                    <c:url value="deleteUser" var="displayURL">
+                                        <c:param name="login" value="${i.login}" /> 
+                                    </c:url>
+                                    <td><a href="<c:out value='${displayURL}' />"><span class="glyphicon glyphicon-remove">remove</span></a></td>
+
                                     
                                     <!-- <c:if test="${currentrqc.status == 'in process'}">
                                         <c:url value="crqapproval.jsp" var="displayURL">

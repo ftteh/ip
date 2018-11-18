@@ -4,7 +4,7 @@
  */
 package admin;
 
-import bean.Room;
+import bean.Application;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -24,14 +24,13 @@ import jdbc.JDBCUtility;
  *
  * @author MSI
  */
-@WebServlet(name = "deleteApp", urlPatterns = {"/admin/deleteApp"})
+@WebServlet(name = "deleteApp", urlPatterns = { "/admin/deleteApp" })
 public class deleteApp extends HttpServlet {
 
     private JDBCUtility jdbcUtility;
     private Connection con;
-    
-    public void init() throws ServletException
-    {
+
+    public void init() throws ServletException {
         String driver = "com.mysql.jdbc.Driver";
 
         String dbName = "cash";
@@ -39,83 +38,76 @@ public class deleteApp extends HttpServlet {
         String userName = "root";
         String password = "";
 
-        jdbcUtility = new JDBCUtility(driver,
-                                      url,
-                                      userName,
-                                      password);
+        jdbcUtility = new JDBCUtility(driver, url, userName, password);
 
         jdbcUtility.jdbcConnect();
         con = jdbcUtility.jdbcGetConnection();
-    }    
+    }
 
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //Get the session object
-	HttpSession session = request.getSession();
-        
-        ArrayList roomList = new ArrayList();  
-        
-        //get form data from VIEW > V-I
+        // Get the session object
+        HttpSession session = request.getSession();
+
+        ArrayList appList = new ArrayList();
+
+        // get form data from VIEW > V-I
         String id = request.getParameter("id");
-        
-        String sqlUpdate = "DELETE FROM application WHERE id = ?"; 
-        
+
+        String sqlUpdate = "DELETE FROM application WHERE id = ?";
+
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sqlUpdate);
             preparedStatement.setString(1, id);
             preparedStatement.executeUpdate();
-            
-            String sqlQuery = "SELECT * FROM room ORDER BY name ASC";
-            
+
+            String sqlQuery = "SELECT * FROM application ORDER BY name ASC";
+
             preparedStatement = con.prepareStatement(sqlQuery);
             ResultSet rs = preparedStatement.executeQuery();
-            
-            while (rs.next()) {
-         
-                
-//                String roomrid = rs.getString("rid");
-//                String roomstatus = rs.getString("status");
-//                String roomfm = rs.getString("fm");
-//                String roomtype = rs.getString("type");
-//                String roomcollege = rs.getString("college");
-//                String roomowner = rs.getString("owner");
 
-                
-                // Currency currency = new Currency();
-                // currency.setName(currencyName);
-                // currency.setSymbol(currencySymbol);
-                // currency.setStatus(currencyStatus);
-                // currency.setId(currencyId);
-                // currenyList.add(currency);
+            while (rs.next()) {
+
+                id = rs.getString("id");
+                String applicant = rs.getString("applicant");
+                String approval = rs.getString("approval");
+                String room = rs.getString("room");
+
+                Application application = new Application();
+                application.setId(id);
+                application.setApplicant(applicant);
+                application.setApproval(approval);
+                application.setRoom(room);
+                appList.add(application);
+
             }
+        } catch (SQLException ex) {
         }
-        catch (SQLException ex) {            
-        }
-        
-        // session.setAttribute("currencylist", currenyList);
-        // response.sendRedirect(request.getContextPath() + "/admin/managecurrency.jsp");
+
+        session.setAttribute("appList", appList);
+        response.sendRedirect(request.getContextPath() + "/admin/viewApp");
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
+    // + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -124,13 +116,12 @@ public class deleteApp extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
