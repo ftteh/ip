@@ -59,9 +59,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/cash/admin/viewUser"><span class="glyphicon glyphicon-th-list"></span> Manage Users</a></li>
-            <li><a href="/cash/admin/viewRoom"><span class="glyphicon glyphicon-th-list"></span> Manage Room</a></li>
-            <li><a href="/cash/admin/viewApp"><span class="glyphicon glyphicon-th-list"></span> Manage Application</a></li> 
+            <li><a href="/cash/admin/viewUser"><span class="glyphicon glyphicon-th-list"></span>Manage Users</a></li>
+            <li><a href="/cash/admin/viewRoom"><span class="glyphicon glyphicon-th-list"></span>Manage Room</a></li>
+            <li><a href="/cash/admin/viewApp"><span class="glyphicon glyphicon-th-list"></span>Manage Application</a></li> 
           </ul>
           <ul class="nav navbar-nav navbar-right">
       		<li class="dropdown">
