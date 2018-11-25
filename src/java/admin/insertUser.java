@@ -65,9 +65,8 @@ public class insertUser extends HttpServlet {
         //Get the session object
 	HttpSession session = request.getSession();
         
-        ArrayList currenyList = new ArrayList();  
+        ArrayList userList = new ArrayList();  
         
-        //get form data from VIEW > V-I
         String login=request.getParameter("login");
         String password=request.getParameter("password");
         String usertype=request.getParameter("usertype");
@@ -84,11 +83,48 @@ public class insertUser extends HttpServlet {
             preparedStatement.setString(3, usertype);
             preparedStatement.setString(4, fullname);
             preparedStatement.executeUpdate();
+            PrintWriter out = response.getWriter();
+
+
+            String sqlQuery = "SELECT * FROM user ";
+
+            preparedStatement = con.prepareStatement(sqlQuery);
+            ResultSet rs = preparedStatement.executeQuery();
+
+
+            while (rs.next()) {
+
+               login = rs.getString("login");
+               password = rs.getString("password");
+               usertype = rs.getString("usertype");
+               fullname = rs.getString("fullname");
+               String image = rs.getString("image");
+
+                // out.println(login);
+                // out.println(password);
+                // out.println(usertype);
+                // out.println(fullname);
+                // out.println(image);
+
+                User user = new User();
+                user.setLogin(login);
+                user.setPassword(password);
+                user.setUserType(usertype);
+                user.setFullName(fullname);
+                user.setImage(image);
+                userList.add(user);
+
+            }
+            
+
             
 
         }
         catch (SQLException ex) {            
         }
+        session.setAttribute("userList", userList);
+        response.sendRedirect(request.getContextPath() +
+        "/admin/addtobackend.jsp");
         
     }
 

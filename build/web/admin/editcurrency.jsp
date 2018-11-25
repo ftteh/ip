@@ -110,7 +110,7 @@
         <p>&nbsp;</p>
         <div class="row">
             <div class="col-md-6">
-                <form class="form-horizontal" action="/cash/admin/EditCurrencyProcessServlet" method="post">
+                <form class="form-horizontal" action="/ip/adminEditCurrencyProcessServlet" method="post">
                     <fieldset>
                         <div class="form-group">
                             <label for="login" class="col-lg-2 control-label">Name</label>

@@ -71,7 +71,7 @@ public class deleteUser extends HttpServlet {
             preparedStatement.setString(1, login);
             preparedStatement.executeUpdate();
 
-            String sqlQuery = "SELECT * FROM user ORDER BY name ASC";
+            String sqlQuery = "SELECT * FROM user";
 
             preparedStatement = con.prepareStatement(sqlQuery);
             ResultSet rs = preparedStatement.executeQuery();

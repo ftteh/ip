@@ -61,22 +61,22 @@ public class deleteRoom extends HttpServlet {
 
         ArrayList roomList = new ArrayList();
 
-        // get form data from VIEW > V-I
         String rid = request.getParameter("rid");
-
         String sqlUpdate = "DELETE FROM room WHERE rid = ?";
-
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sqlUpdate);
             preparedStatement.setString(1, rid);
             preparedStatement.executeUpdate();
 
-            String sqlQuery = "SELECT * FROM room ORDER BY name ASC";
+            String sqlQuery = "SELECT * FROM room";
 
             preparedStatement = con.prepareStatement(sqlQuery);
             ResultSet rs = preparedStatement.executeQuery();
 
+            PrintWriter out = response.getWriter();
+
             while (rs.next()) {
+
 
                 rid = rs.getString("rid");
                 String status = rs.getString("status");
@@ -99,7 +99,7 @@ public class deleteRoom extends HttpServlet {
         }
 
         session.setAttribute("roomList", roomList);
-        response.sendRedirect(request.getContextPath() + "/admin/viewRoom");
+        response.sendRedirect(request.getContextPath() + "/admin/viewroom.jsp");
 
     }
 

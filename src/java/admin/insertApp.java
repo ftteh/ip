@@ -64,9 +64,8 @@ public class insertApp extends HttpServlet {
         // Get the session object
         HttpSession session = request.getSession();
 
-        ArrayList applicationList = new ArrayList();
+        ArrayList appList = new ArrayList();
 
-        // get form data from VIEW > V-I
         String id = request.getParameter("id");
         String applicant = request.getParameter("applicant");
         String approval = request.getParameter("approval");
@@ -83,7 +82,7 @@ public class insertApp extends HttpServlet {
             preparedStatement.setString(4, room);
             preparedStatement.executeUpdate();
 
-            String sqlQuery = "SELECT * FROM application ORDER BY name ASC";
+            String sqlQuery = "SELECT * FROM application";
 
             preparedStatement = con.prepareStatement(sqlQuery);
             ResultSet rs = preparedStatement.executeQuery();
@@ -95,15 +94,18 @@ public class insertApp extends HttpServlet {
                 String app_room = rs.getString("room");
 
                 Application app = new Application();
-                app.setId(id);
-                app.setApplicant(applicant);
-                app.setApproval(approval);
-                app.setRoom(room);
-                applicationList.add(app);
+                app.setId(app_id);
+                app.setApplicant(app_applicant);
+                app.setApproval(app_approval);
+                app.setRoom(app_room);
+                appList.add(app);
             }
         } catch (SQLException ex) {
         }
 
+        session.setAttribute("appList", appList);
+        response.sendRedirect(request.getContextPath() +
+        "/admin/addtobackend.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the

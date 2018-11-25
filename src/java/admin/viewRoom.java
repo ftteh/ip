@@ -57,9 +57,10 @@ public class viewRoom extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         ArrayList roomList = new ArrayList();
+        PrintWriter out = response.getWriter();
+
 
         String sqlQuery = "SELECT * FROM room";
-        System.out.println(sqlQuery);
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sqlQuery);
             ResultSet rs = preparedStatement.executeQuery();
@@ -73,7 +74,7 @@ public class viewRoom extends HttpServlet {
                 String college = rs.getString("college");
                 String owner = rs.getString("owner");
 
-                
+
                 Room room = new Room();
                 room.setRid(rid);
                 room.setStatus(status);

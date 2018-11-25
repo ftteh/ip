@@ -71,7 +71,7 @@ public class deleteApp extends HttpServlet {
             preparedStatement.setString(1, id);
             preparedStatement.executeUpdate();
 
-            String sqlQuery = "SELECT * FROM application ORDER BY name ASC";
+            String sqlQuery = "SELECT * FROM application";
 
             preparedStatement = con.prepareStatement(sqlQuery);
             ResultSet rs = preparedStatement.executeQuery();
@@ -95,7 +95,7 @@ public class deleteApp extends HttpServlet {
         }
 
         session.setAttribute("appList", appList);
-        response.sendRedirect(request.getContextPath() + "/admin/viewApp");
+        response.sendRedirect(request.getContextPath() + "/admin/viewapp.jsp");
 
     }
 

@@ -84,10 +84,11 @@ public class insertRoom extends HttpServlet {
             preparedStatement.setString(6, owner);
             preparedStatement.executeUpdate();
 
-            String sqlQuery = "SELECT * FROM room ORDER BY name ASC";
+            String sqlQuery = "SELECT * FROM room ";
 
             preparedStatement = con.prepareStatement(sqlQuery);
             ResultSet rs = preparedStatement.executeQuery();
+            PrintWriter out=response.getWriter();
 
             while (rs.next()) {
                 String room_rid = rs.getString("rid");
@@ -96,6 +97,15 @@ public class insertRoom extends HttpServlet {
                 String room_type = rs.getString("type");
                 String room_college = rs.getString("college");
                 String room_owner = rs.getString("owner");
+
+
+
+                // out.println(room_rid );
+                // out.println(room_status );
+                // out.println(room_fm );
+                // out.println(room_type );
+                // out.println(room_college );
+                // out.println(room_owner );
 
                 Room room  = new Room();
                 room.setRid(room_rid);
@@ -108,6 +118,10 @@ public class insertRoom extends HttpServlet {
             }
         } catch (SQLException ex) {
         }
+        
+        session.setAttribute("roomList", roomList);
+        response.sendRedirect(request.getContextPath() +
+        "/admin/addtobackend.jsp");
 
     }
 
