@@ -63,8 +63,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/cash/GetCashServlet"><span class="glyphicon glyphicon-usd"></span> Get Cash</a></li>
-            <li><a href="/cash/MemberViewCashServlet"><span class="glyphicon glyphicon-th-list"></span> View Cash</a></li> 
+            <li class="active"><a href="/ip/GetCashServlet"><span class="glyphicon glyphicon-usd"></span> Get Cash</a></li>
+            <li><a href="/ip/MemberViewCashServlet"><span class="glyphicon glyphicon-th-list"></span> View Cash</a></li> 
           </ul>
           <ul class="nav navbar-nav navbar-right">
       		<li class="dropdown">
@@ -72,10 +72,10 @@
                             <span style="color:#FFFF00"><jsp:getProperty name="memberprofile" property="fullName"/></span>
                             (Member) <b class="caret"></b></a>
 			        <ul class="dropdown-menu">
-			          <li><a href="/cash/memberprofile.jsp"><span class="glyphicon glyphicon-user"></span> User Profile</a></li>
-			          <li><a href="/cash/MemberSettingServlet"><span class="glyphicon glyphicon-cog"></span> Setting</a></li>
+			          <li><a href="/ip/memberprofile.jsp"><span class="glyphicon glyphicon-user"></span> User Profile</a></li>
+			          <li><a href="/ip/MemberSettingServlet"><span class="glyphicon glyphicon-cog"></span> Setting</a></li>
 			          <li class="divider"></li>
-			          <li><a href="/cash/logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+			          <li><a href="/ip/logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			        </ul>
 		  	</li>
           </ul>

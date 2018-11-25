@@ -51,7 +51,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/cash/register.jsp"><span class="glyphicon glyphicon-pencil"></span> Register</a></li>
+            <li><a href="/ip/register.jsp"><span class="glyphicon glyphicon-pencil"></span> Register</a></li>
       		<li class="dropdown">
 		        <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-info-sign"></span> Info <b class="caret"></b></a>
 			        <ul class="dropdown-menu">
