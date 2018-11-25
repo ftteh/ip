@@ -60,9 +60,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/cash/admin/ViewUsersServlet"><span class="glyphicon glyphicon-th-list"></span> Manage Users</a></li>
-            <li><a href="/cash/admin/ViewCashServlet"><span class="glyphicon glyphicon-th-list"></span> View Cash Request</a></li>
-            <li class="active"><a href="/cash/admin/ManageBackendDataServlet"><span class="glyphicon glyphicon-th-list"></span> Manage Backend Data</a></li> 
+            <li><a href="/ip/admin/ViewUsersServlet"><span class="glyphicon glyphicon-th-list"></span> Manage Users</a></li>
+            <li><a href="/ip/admin/ViewCashServlet"><span class="glyphicon glyphicon-th-list"></span> View Cash Request</a></li>
+            <li class="active"><a href="/ip/admin/ManageBackendDataServlet"><span class="glyphicon glyphicon-th-list"></span> Manage Backend Data</a></li> 
           </ul>
           <ul class="nav navbar-nav navbar-right">
       		<li class="dropdown">
@@ -73,10 +73,10 @@
                             </c:if> 
                             (Admin) <b class="caret"></b></a>
 			        <ul class="dropdown-menu">
-			          <li><a href="/cash/admin/UserProfileServlet"><span class="glyphicon glyphicon-user"></span> User Profile</a></li>
-			          <li><a href="/cash/admin/SettingServlet"><span class="glyphicon glyphicon-cog"></span> Setting</a></li>
+			          <li><a href="/ip/admin/UserProfileServlet"><span class="glyphicon glyphicon-user"></span> User Profile</a></li>
+			          <li><a href="/ip/admin/SettingServlet"><span class="glyphicon glyphicon-cog"></span> Setting</a></li>
 			          <li class="divider"></li>
-			          <li><a href="/cash/admin/logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+			          <li><a href="/ip/admin/logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			        </ul>
 		  	</li>
           </ul>
