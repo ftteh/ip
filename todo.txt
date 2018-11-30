@@ -1,1 +1,2 @@
 maybe the redirection of update and initializer can combine/restructure
+the admin bar n profile?
