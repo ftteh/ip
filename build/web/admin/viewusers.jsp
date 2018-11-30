@@ -62,7 +62,7 @@
             <li><a href="/ip/admin/viewUser"><span class="glyphicon glyphicon-th-list"></span>Manage Users</a></li>
             <li><a href="/ip/admin/viewRoom"><span class="glyphicon glyphicon-th-list"></span>Manage Room</a></li>
             <li><a href="/ip/admin/viewApp"><span class="glyphicon glyphicon-th-list"></span>Manage Applications</a></li> 
-            <li><a href="/ip/admin/addtobackend.jsp"><span class="glyphicon glyphicon-th-list"></span>Manage
+            <li><a href="/ip/admin/viewInit"><span class="glyphicon glyphicon-th-list"></span>Manage
               Backend</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">

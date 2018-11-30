@@ -4,7 +4,7 @@
  */
 package admin;
 
-import bean.User;
+import bean.Application;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -68,6 +68,8 @@ public class updateApp extends HttpServlet {
         // get form data from VIEW > V-I        
         String approval = request.getParameter("approval");
         String id = request.getParameter("id");
+        PrintWriter out=response.getWriter();
+
         
         String sqlUpdate = "UPDATE application SET approval= ? WHERE id = ?"; 
         
@@ -79,8 +81,36 @@ public class updateApp extends HttpServlet {
         }
         catch (SQLException ex) {            
         }
+        ArrayList appList = new ArrayList();
+
+        String sqlQuery = "SELECT * FROM application";
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(sqlQuery);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+
+                 id = rs.getString("id");
+                String applicant = rs.getString("applicant");
+                approval = rs.getString("approval");
+                String room = rs.getString("room");
+
+                Application application = new Application();
+                application.setId(id);
+                application.setApplicant(applicant);
+                application.setApproval(approval);
+                application.setRoom(room);
+                appList.add(application);
+
+            }
+        } catch (SQLException ex) {
+        }
+
+        session.setAttribute("appList", appList);
+        response.sendRedirect(request.getContextPath() + "/admin/addtobackend.jsp");
+
+    
         
-        response.sendRedirect(request.getContextPath() + "/passwordchangesucces.jsp");        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

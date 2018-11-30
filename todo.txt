@@ -1,3 +1,1 @@
-need initializer in add to backend.
-settled display logic for room
-update all.
+maybe the redirection of update and initializer can combine/restructure

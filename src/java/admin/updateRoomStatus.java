@@ -4,7 +4,7 @@
  */
 package admin;
 
-import bean.User;
+import bean.Room;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -68,6 +68,8 @@ public class updateRoomStatus extends HttpServlet {
         // get form data from VIEW > V-I        
         String status = request.getParameter("status");
         String rid = request.getParameter("rid");
+        ArrayList roomList = new ArrayList();
+
         
         String sqlUpdate = "UPDATE room SET status= ? WHERE rid = ?"; 
         
@@ -79,8 +81,37 @@ public class updateRoomStatus extends HttpServlet {
         }
         catch (SQLException ex) {            
         }
-        
-        response.sendRedirect(request.getContextPath() + "/passwordchangesucces.jsp");        
+
+
+        String sqlQuery = "SELECT * FROM room";
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(sqlQuery);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+
+                rid = rs.getString("rid");
+                status = rs.getString("status");
+                String fm = rs.getString("fm");
+                String type = rs.getString("type");
+                String college = rs.getString("college");
+                String owner = rs.getString("owner");
+
+
+                Room room = new Room();
+                room.setRid(rid);
+                room.setStatus(status);
+                room.setFm(fm);
+                room.setType(type);
+                room.setCollege(college);
+                room.setOwner(owner);
+                roomList.add(room);
+
+            }
+        } catch (SQLException ex) {
+        }
+        session.setAttribute("roomList", roomList);
+        response.sendRedirect(request.getContextPath() + "/admin/addtobackend.jsp");        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

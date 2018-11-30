@@ -6,9 +6,9 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:if test="${sessionScope.adminprofile == null}">
+<%--<c:if test="${sessionScope.adminprofile == null}">
     <% response.sendRedirect(request.getContextPath() + "/admin/terminate.html"); %>
-</c:if>
+</c:if>--%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +61,7 @@
                     <li><a href="/ip/admin/viewRoom"><span class="glyphicon glyphicon-th-list"></span>Manage Room</a></li>
                     <li><a href="/ip/admin/viewApp"><span class="glyphicon glyphicon-th-list"></span>Manage
                             Applications</a></li>
-                    <li><a href="/ip/admin/addtobackend.jsp"><span class="glyphicon glyphicon-th-list"></span>Manage
+                    <li><a href="/ip/admin/viewInit"><span class="glyphicon glyphicon-th-list"></span>Manage
                             Backend</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -94,17 +94,6 @@
         <!-- Main component for a primary marketing message or call to action -->
         <div class="jumbotron">
             <h1>Cash Web-App example</h1>
-            <ul>
-                <li>Responsive application</li>
-                <li>Bootstrap CSS</li>
-                <li>MVC
-                    <ul>
-                        <li>(M)odel - JavaBeans</li>
-                        <li>(V)iew - JSP for input and output</li>
-                        <li>(C)ontroller - Servlet</li>
-                    </ul>
-                </li>
-            </ul>
         </div>
 
         <div class="well">
@@ -116,11 +105,11 @@
                             <thead>
                                 <tr>
                                     <th>rid</th>
-                                    <th>status</th>
                                     <th>fm</th>
                                     <th>type</th>
                                     <th>college</th>
                                     <th>owner</th>
+                                    <th>action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -129,9 +118,6 @@
 
                                         <td>
                                             <c:out value="${currentcurr.rid}" />
-                                        </td>
-                                        <td>
-                                            <c:out value="${currentcurr.status}" />
                                         </td>
                                         <td>
                                             <c:out value="${currentcurr.fm}" />
@@ -146,6 +132,23 @@
                                             <c:out value="${currentcurr.owner}" />
                                         </td>
 
+                                        <c:if test="${currentcurr.status == 'owned'}">
+                                            <c:url value="/updateRoomStatus" var="upRoom">
+                                                <c:param name="rid" value="${currentcurr.rid}" />
+                                                <c:param name="status" value="available" />
+                                            </c:url>
+                                            <td><a href="<c:out value='${upRoom}' />">
+                                                    <c:out value="${currentcurr.status}" /></a></td>
+                                        </c:if>
+
+                                        <c:if test="${currentcurr.status == 'available'}">
+                                            <c:url value="/updateRoomStatus" var="upRoom">
+                                                <c:param name="rid" value="${currentcurr.rid}" />
+                                                <c:param name="status" value="owned" />
+                                            </c:url>
+                                            <td><a href="<c:out value='${upRoom}' />">
+                                                    <c:out value="${currentcurr.status}" /></a></td>
+                                        </c:if>
 
                                     </tr>
                                 </c:forEach>
@@ -244,160 +247,202 @@
                                             <c:out value="${currentcurr.applicant}" />
                                         </td>
                                         <td>
-                                            <c:out value="${currentcurr.approval}" />
-                                        </td>
-                                        <td>
-                                            <c:out value="${currentcurr.room}" />
-                                        </td>
+                                            <div class="col-sm-10">
 
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
+                                                <select class="form-control" id="approval" name="approval" required
+                                                    onchange=window.location.replace('/ip/updateApp?id=<c:out value="${currentcurr.id}" />&approval='+this.value)>
+                                                    <c:if test="${currentcurr.approval == 'approved'}">
+                                                        <c:url value="/updateApp" var="upApp">
+                                                            <c:param name="id" value="${currentcurr.id}" />
+                                                            <c:param name="approval" value="approval" />
+                                                        </c:url>
+                                                        <c:out value='<option value="approved" selected >approved</option>'
+                                                            escapeXml="false" />
+                                                        <c:out value='<option value="pending">pending</option>'
+                                                            escapeXml="false" />
+                                                        <c:out value='<option value="rejected">rejected</option>'
+                                                            escapeXml="false" />
+                                                    </c:if>
+                                                    <c:if test="${currentcurr.approval == 'pending'}">
+                                                        <c:url value="/updateApp" var="upApp">
+                                                            <c:param name="id" value="${currentcurr.id}" />
+                                                            <c:param name="approval" value="approval" />
+                                                        </c:url>
+                                                        <c:out value='<option value="approved"  >approved</option>'
+                                                            escapeXml="false" />
+                                                        <c:out value='<option value="pending" selected>pending</option>'
+                                                            escapeXml="false" />
+                                                        <c:out value='<option value="rejected">rejected</option>'
+                                                            escapeXml="false" />
+                                                    </c:if>
+                                                    <c:if test="${currentcurr.approval == 'rejected'}">
+                                                        <c:url value="/updateApp" var="upApp">
+                                                            <c:param name="id" value="${currentcurr.id}" />
+                                                            <c:param name="approval" value="approval" />
+                                                        </c:url>
+                                                        <c:out value='<option value="approved" >approved</option>'
+                                                            escapeXml="false" />
+                                                        <c:out value='<option value="pending">pending</option>'
+                                                            escapeXml="false" />
+                                                        <c:out value='<option value="rejected" selected>rejected</option>'
+                                                            escapeXml="false" />
+                                                    </c:if>
+                                                </select>
+
+                                            </div>
+                                        </td>
                     </div>
+                    <td>
+                        <c:out value="${currentcurr.room}" />
+                    </td>
 
+                    </tr>
+                    </c:forEach>
+                    </tbody>
+                    </table>
                 </div>
-                <div class="col-md-5">
-                    <h3>Add New Application</h3>
-                    <div class="well">
-                        <form class="form-horizontal" action="/ip/admin/insertApp" method="post">
-                            <fieldset>
-                                <div class="form-group">
-                                    <label for="id" class="col-lg-2 control-label">ID</label>
-                                    <div class="col-lg-10">
-                                        <input class="form-control" id="id" name="id" placeholder="id" type="text"
-                                            required>
-                                    </div>
+
+            </div>
+            <div class="col-md-5">
+                <h3>Add New Application</h3>
+                <div class="well">
+                    <form class="form-horizontal" action="/ip/admin/insertApp" method="post">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="id" class="col-lg-2 control-label">ID</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" id="id" name="id" placeholder="id" type="text" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="applicant" class="col-lg-2 control-label">applicant</label>
-                                    <div class="col-lg-10">
-                                        <input class="form-control" id="applicant" name="applicant" placeholder="applicant"
-                                            type="text" required>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="applicant" class="col-lg-2 control-label">applicant</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" id="applicant" name="applicant" placeholder="applicant"
+                                        type="text" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="approval" class="col-lg-2 control-label">approval</label>
-                                    <div class="col-lg-10">
-                                        <select class="form-control" id="approval" name="approval" required>
-                                            <option value="approved">approved</option>
-                                            <option value="pending">pending</option>
-                                            <option value="rejected">rejected</option>
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="approval" class="col-lg-2 control-label">approval</label>
+                                <div class="col-lg-10">
+                                    <select class="form-control" id="approval" name="approval" required>
+                                        <option value="approved">approved</option>
+                                        <option value="pending">pending</option>
+                                        <option value="rejected">rejected</option>
+                                    </select>
                                 </div>
-                                <div class="form-group">
-                                    <label for="room" class="col-lg-2 control-label">room</label>
-                                    <div class="col-lg-10">
-                                        <input class="form-control" id="room" name="room" placeholder="room" type="text"
-                                            required>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="room" class="col-lg-2 control-label">room</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" id="room" name="room" placeholder="room" type="text"
+                                        required>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-lg-10 col-lg-offset-2">
-                                        <button class="btn btn-default">Cancel</button>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-10 col-lg-offset-2">
+                                    <button class="btn btn-default">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
-                            </fieldset>
-                        </form>
-                    </div>
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="well">
-            <div class="row">
-                <div class="col-md-7">
-                    <h3>User List</h3>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover ">
-                            <thead>
+    <div class="well">
+        <div class="row">
+            <div class="col-md-7">
+                <h3>User List</h3>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover ">
+                        <thead>
+                            <tr>
+                                <th>login</th>
+                                <th>password</th>
+                                <th>usertype</th>
+                                <th>fullname</th>
+                                <th>image</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${sessionScope.userList}" var="currentcurr" varStatus="loop">
                                 <tr>
-                                    <th>login</th>
-                                    <th>password</th>
-                                    <th>usertype</th>
-                                    <th>fullname</th>
-                                    <th>image</th>
+
+                                    <td>
+                                        <p>something for login here</p>
+                                    </td>
+                                    <td>
+                                        <c:out value="${currentcurr.password}" />
+                                    </td>
+                                    <td>
+                                        <c:out value="${currentcurr.userType}" />
+                                    </td>
+                                    <td>
+                                        <c:out value="${currentcurr.fullName}" />
+                                    </td>
+                                    <td>
+                                        <c:out value="${currentcurr.image}" />
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach items="${sessionScope.userList}" var="currentcurr" varStatus="loop">
-                                    <tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div> <!-- table-responsive -->
 
-                                        <td>
-                                            <p>something for login here</p>
-                                        </td>
-                                        <td>
-                                            <c:out value="${currentcurr.password}" />
-                                        </td>
-                                        <td>
-                                            <c:out value="${currentcurr.userType}" />
-                                        </td>
-                                        <td>
-                                            <c:out value="${currentcurr.fullName}" />
-                                        </td>
-                                        <td>
-                                            <c:out value="${currentcurr.image}" />
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                    </div> <!-- table-responsive -->
-
-                </div>
-                <div class="col-md-5">
-                    <h3>Add New User</h3>
-                    <div class="well">
-                        <form class="form-horizontal" action="/ip/admin/insertUser" method="post">
-                            <fieldset>
-                                <div class="form-group">
-                                    <label for="login" class="col-lg-2 control-label">login</label>
-                                    <div class="col-lg-10">
-                                        <input class="form-control" id="login" name="login" placeholder="login" type="text"
-                                            required>
-                                    </div>
+            </div>
+            <div class="col-md-5">
+                <h3>Add New User</h3>
+                <div class="well">
+                    <form class="form-horizontal" action="/ip/admin/insertUser" method="post">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="login" class="col-lg-2 control-label">login</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" id="login" name="login" placeholder="login" type="text"
+                                        required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="password" class="col-lg-2 control-label">password</label>
-                                    <div class="col-lg-10">
-                                        <input class="form-control" id="password" name="password" placeholder="password"
-                                            type="text" required>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-lg-2 control-label">password</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" id="password" name="password" placeholder="password"
+                                        type="text" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="usertype" class="col-lg-2 control-label">usertype</label>
-                                    <div class="col-lg-10">
-                                        <select class="form-control" id="usertype" name="usertype" required>
-                                            <option value="admin">admin</option>
-                                            <option value="normal">normal</option>
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="usertype" class="col-lg-2 control-label">usertype</label>
+                                <div class="col-lg-10">
+                                    <select class="form-control" id="usertype" name="usertype" required>
+                                        <option value="admin">admin</option>
+                                        <option value="normal">normal</option>
+                                    </select>
                                 </div>
-                                <div class="form-group">
-                                    <label for="fullname" class="col-lg-2 control-label">fullname</label>
-                                    <div class="col-lg-10">
-                                        <input class="form-control" id="fullname" name="fullname" placeholder="fullname"
-                                            type="text" required>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="fullname" class="col-lg-2 control-label">fullname</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" id="fullname" name="fullname" placeholder="fullname"
+                                        type="text" required>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-lg-10 col-lg-offset-2">
-                                        <button class="btn btn-default">Cancel</button>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-10 col-lg-offset-2">
+                                    <button class="btn btn-default">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
-                            </fieldset>
-                        </form>
-                    </div>
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
-        <footer>
-            <p>&copy; RBK 2014 - SCJ/SCSJ 2303/3303</p>
-        </footer>
+    <footer>
+        <p>&copy; RBK 2014 - SCJ/SCSJ 2303/3303</p>
+    </footer>
 
     </div> <!-- /container -->
 
