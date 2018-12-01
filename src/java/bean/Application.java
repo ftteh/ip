@@ -71,4 +71,50 @@ public class Application {
     private String applicant;
     private String approval;
     private String room;
+    private String gender;
+    private String type;
+    private String college;
+
+    /**
+     * @return the gender
+     */
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * @param gender the gender to set
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * @return the college
+     */
+    public String getCollege() {
+        return college;
+    }
+
+    /**
+     * @param college the college to set
+     */
+    public void setCollege(String college) {
+        this.college = college;
+    }
+
 }
