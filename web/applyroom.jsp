@@ -1,18 +1,12 @@
-<%-- 
-    Document   : getcash
-    Created on : Nov 6, 2014, 10:50:46 PM
-    Author     : U
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="bean.User" %>
-<%@ page import="bean.Currency" %>
+<%@ page import="bean.Room" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<c:if test="${sessionScope.memberprofile != null}">
+<c:if test="${sessionScope.memberprofile == null}">
     <% response.sendRedirect(request.getContextPath() + "/terminate.html"); %>
 </c:if>
 
@@ -28,7 +22,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Cash - Member - Request Cash</title>
+    <title>Hostel - Member - Apply Room</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -102,31 +96,26 @@
       </div>
       
       <div class="well">
-        <h3>Request Cash</h3>
+        <h3>Apply Room</h3>
         <p>&nbsp;</p>
         <div class="row">
             <div class="col-md-6"> 
                 
-<form class="form-horizontal" action="/cash/RequestCashProcessServlet" method="post">
+<form class="form-horizontal" action="/ip/ApplicationServlet" method="post">
   <fieldset>
     <div class="form-group">
-      <label for="currency" class="col-lg-2 control-label">Currency</label>
+      <label for="room" class="col-lg-2 control-label">Room</label>
       <div class="col-lg-10">
-          <select class="form-control" id="currencyid" name="currencyid" required>
-              <c:forEach items="${sessionScope.currencylist}" var="currency" varStatus="loop">
-                  <c:if test="${currency.status == 'active'}">
-                    <option value="${currency.id}">${currency.symbol}</option>
+          <select class="form-control" id="roomid" name="roomid" required>
+              <c:forEach items="${sessionScope.roomlist}" var="room" varStatus="loop">
+                  <c:if test="${room.status == 'available'}">
+                    <option value="${room.rid}">${room.type}</option>
                   </c:if>
               </c:forEach>
           </select>
       </div>
     </div>
-    <div class="form-group">
-      <label for="amount" class="col-lg-2 control-label">Amount</label>
-      <div class="col-lg-10">
-          <input class="form-control" id="amount" name="amount" placeholder="Amount" type="text" required>        
-      </div>
-    </div>
+
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <input type="hidden" name="login" value="<jsp:getProperty name="memberprofile" property="login"/>">  

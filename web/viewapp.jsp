@@ -1,21 +1,16 @@
-<%-- 
-    Document   : reqcashstatus
-    Created on : Nov 7, 2014, 8:27:01 AM
-    Author     : U
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="bean.User" %>
-<%@ page import="bean.CashRequest" %>
+<%@ page import="bean.Application" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:if test="${sessionScope.memberprofile != null}">
+
+<c:if test="${sessionScope.memberprofile == null}">
     <% response.sendRedirect(request.getContextPath() + "/terminate.html"); %>
 </c:if>
 
 <jsp:useBean id="memberprofile" class="bean.User" scope="session" />
-<jsp:useBean id="rqc" class="bean.CashRequest" scope="session" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +22,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Cash - Member - Request Cash</title>
+    <title>Hostel - Member - View Application</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -62,8 +57,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/ip/GetCashServlet"><span class="glyphicon glyphicon-usd"></span> Get Cash</a></li>
-            <li><a href="/ip/MemberViewCashServlet"><span class="glyphicon glyphicon-th-list"></span> View Cash</a></li> 
+            <li><a href="/ip/GetCashServlet"><span class="glyphicon glyphicon-usd"></span> Get Cash</a></li>
+            <li class="active"><a href="/ip/MemberViewCashServlet"><span class="glyphicon glyphicon-th-list"></span> View Cash</a></li> 
           </ul>
           <ul class="nav navbar-nav navbar-right">
       		<li class="dropdown">
@@ -101,14 +96,54 @@
       </div>
       
       <div class="well">
-        <h3>Request Cash Status</h3>
-        <p>&nbsp;</p>
         <div class="row">
-            <div class="col-md-6">
-                Request Cash - Successful<br />
-                Amount: <jsp:getProperty name="rqc" property="symbol"/><jsp:getProperty name="rqc" property="amount"/><br />
-                Back to <a href="/ip/GetCashServlet">Cash Request</a>
+            <div class="col-md-6"> 
+                <h3>Hostel Application History/Status</h3>                
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover ">
+                        <thead>
+                            <tr>
+                                <th>Index</th>
+                                <th>College</th>
+                                <th>Room</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:set var="amountinprocess" scope="page" value="${0}"/>
+                            <c:set var="amountapprove" scope="page" value="${0}"/>
+                            <c:set var="amountrejected" scope="page" value="${0}"/>
+                            <c:forEach items="${sessionScope.applist}" var="currentapp" varStatus="loop">                                
+                                <tr>
+                                    <td><c:out value="${loop.index + 1}" /></td>       
+                                    <td><c:out value="${currentapp.college}" /></td>
+                                    <td><c:out value="${currentapp.type}" /></td>
+                                    <td><c:out value="${currentapp.approval}" /></td>
+                                    <c:if test="${currentapp.approval == 'in process'}">
+                                        <%--<c:set var="amountinprocess" scope="page" value="${amountinprocess + currentapp.amount}"/>--%>
+                                    </c:if>
+                                    
+                                    <c:if test="${currentapp.approval == 'approve'}">
+                                        <%--<c:set var="amountapprove" scope="page" value="${amountapprove + currentapp.amount}"/>--%>
+                                    </c:if>
+                                    
+                                    <c:if test="${currentapp.approval == 'rejected'}">
+                                        <%--<c:set var="amountrejected" scope="page" value="${amountrejected + currentapp.amount}"/>--%>
+                                    </c:if>
+                                </tr>
+                            </c:forEach>
+                        </tbody> 
+                    </table>    
+                </div> <!-- table-responsive -->
             </div>
+            <div class="col-md-6">                
+                <h3>Cash Request Informations</h3>
+                <div class="well">
+                Total in-process cash request: <c:out value="${amountinprocess}"/><br />
+                Total approve cash request: <c:out value="${amountapprove}"/><br />
+                Total rejected cash request: <c:out value="${amountrejected}"/>
+                </div>
+            </div>     
         </div>
       </div>      
       
