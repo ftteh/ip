@@ -57,8 +57,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/ip/GetCashServlet"><span class="glyphicon glyphicon-usd"></span> Get Cash</a></li>
-            <li><a href="/ip/MemberViewCashServlet"><span class="glyphicon glyphicon-th-list"></span> View Cash</a></li> 
+            <li class="active"><a href="/ip/GetRoomServlet"><span class="glyphicon glyphicon-usd"></span> Get Cash</a></li>
+            <li><a href="/ip/ViewAppServlet"><span class="glyphicon glyphicon-th-list"></span> View Cash</a></li> 
           </ul>
           <ul class="nav navbar-nav navbar-right">
       		<li class="dropdown">
