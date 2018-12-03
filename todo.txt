@@ -1,4 +1,2 @@
 maybe the redirection of update and initializer can combine/restructure
 the admin bar n profile?
-owner change to price
-123
