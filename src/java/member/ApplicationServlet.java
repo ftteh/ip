@@ -64,7 +64,7 @@ public class ApplicationServlet extends HttpServlet {
         String applicant = request.getParameter("login");
         String roomId = request.getParameter("roomid");
              
-        String sqlInsert = "INSERT INTO application(applicant, approval, room) VALUES(?, 'in process', ?)"; 
+        String sqlInsert = "INSERT INTO application(applicant, approval, room) VALUES(?, 'pending', ?)"; 
  
         
         try {
@@ -82,19 +82,22 @@ public class ApplicationServlet extends HttpServlet {
             String college = "";
             String type = "";
             String gender = "";
+            String price = "";
 
             while (rs.next()) {
                 college = rs.getString("college");
                 type = rs.getString("type");
                 gender = rs.getString("fm");
+                price = rs.getString("price");
             }
             
             Application app = new Application();
-            app.setApproval("in process");
+            app.setApproval("pending");
             app.setRoom(roomId);
             app.setCollege(college);
             app.setGender(gender);
-            app.setType(type);
+            app.setType(type);            
+            app.setPrice(price);
             
             HttpSession session = request.getSession();
             session.setAttribute("app", app);            

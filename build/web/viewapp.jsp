@@ -57,8 +57,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/ip/GetRoomServlet"><span class="glyphicon glyphicon-usd"></span> Get Cash</a></li>
-            <li class="active"><a href="/ip/ViewAppServlet"><span class="glyphicon glyphicon-th-list"></span> View Cash</a></li> 
+            <li><a href="/ip/GetRoomServlet"><span class="glyphicon glyphicon-usd"></span> Apply Room</a></li>
+            <li class="active"><a href="/ip/ViewAppServlet"><span class="glyphicon glyphicon-th-list"></span> View Application</a></li> 
           </ul>
           <ul class="nav navbar-nav navbar-right">
       		<li class="dropdown">
@@ -104,31 +104,37 @@
                         <thead>
                             <tr>
                                 <th>Index</th>
-                                <th>College</th>
                                 <th>Room</th>
+                                <th>College</th>
+                                <th>Gender</th>
+                                <th>Type</th>
+                                <th>Price</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <c:set var="amountinprocess" scope="page" value="${0}"/>
-                            <c:set var="amountapprove" scope="page" value="${0}"/>
-                            <c:set var="amountrejected" scope="page" value="${0}"/>
+                            <c:set var="pending" scope="page" value="${0}"/>
+                            <c:set var="approve" scope="page" value="${0}"/>
+                            <c:set var="rejected" scope="page" value="${0}"/>
                             <c:forEach items="${sessionScope.applist}" var="currentapp" varStatus="loop">                                
                                 <tr>
                                     <td><c:out value="${loop.index + 1}" /></td>       
+                                    <td><c:out value="${currentapp.room}" /></td>
                                     <td><c:out value="${currentapp.college}" /></td>
+                                    <td><c:out value="${currentapp.gender}" /></td>
                                     <td><c:out value="${currentapp.type}" /></td>
+                                    <td><c:out value="${currentapp.price}" /></td>
                                     <td><c:out value="${currentapp.approval}" /></td>
-                                    <c:if test="${currentapp.approval == 'in process'}">
-                                        <%--<c:set var="amountinprocess" scope="page" value="${amountinprocess + currentapp.amount}"/>--%>
+                                    <c:if test="${currentapp.approval == 'pending'}">
+                                        <c:set var="pending" scope="page" value="${pending + 1}"/>
                                     </c:if>
                                     
                                     <c:if test="${currentapp.approval == 'approve'}">
-                                        <%--<c:set var="amountapprove" scope="page" value="${amountapprove + currentapp.amount}"/>--%>
+                                        <c:set var="approve" scope="page" value="${approve + 1}"/>
                                     </c:if>
                                     
                                     <c:if test="${currentapp.approval == 'rejected'}">
-                                        <%--<c:set var="amountrejected" scope="page" value="${amountrejected + currentapp.amount}"/>--%>
+                                        <c:set var="rejected" scope="page" value="${rejected + 1}"/>
                                     </c:if>
                                 </tr>
                             </c:forEach>
@@ -137,11 +143,11 @@
                 </div> <!-- table-responsive -->
             </div>
             <div class="col-md-6">                
-                <h3>Cash Request Informations</h3>
+                <h3>College Application Informations</h3>
                 <div class="well">
-                Total in-process cash request: <c:out value="${amountinprocess}"/><br />
-                Total approve cash request: <c:out value="${amountapprove}"/><br />
-                Total rejected cash request: <c:out value="${amountrejected}"/>
+                Total pending application : <c:out value="${pending}"/><br />
+                Total approve application <c:out value="${approve}"/><br />
+                Total rejected application: <c:out value="${rejected}"/>
                 </div>
             </div>     
         </div>

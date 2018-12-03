@@ -74,6 +74,7 @@ public class Application {
     private String gender;
     private String type;
     private String college;
+    private String price;
 
     /**
      * @return the gender
@@ -115,6 +116,20 @@ public class Application {
      */
     public void setCollege(String college) {
         this.college = college;
+    }
+
+    /**
+     * @return the price
+     */
+    public String getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(String price) {
+        this.price = price;
     }
 
 }

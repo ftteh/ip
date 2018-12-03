@@ -69,7 +69,7 @@ public class ViewAppServlet extends HttpServlet {
         
         ArrayList appList = new ArrayList();        
         
-        String sqlQuery = "SELECT application.approval, room.type, room.college" +
+        String sqlQuery = "SELECT application.approval, room.type, room.college, room.rid, room.fm, room.price" +
                           " FROM application, room" +
                           " WHERE application.room = room.rid" +
                           " AND application.applicant = '" + login + "'" +
@@ -83,11 +83,17 @@ public class ViewAppServlet extends HttpServlet {
                 String college = rs.getString("college");
                 String type = rs.getString("type");
                 String approval = rs.getString("approval");
+                String room = rs.getString("rid");
+                String gender = rs.getString("fm");
+                String price = rs.getString("price");
                 
                 Application app = new Application();
                 app.setType(type);
                 app.setCollege(college);
                 app.setApproval(approval);
+                app.setRoom(room);
+                app.setGender(gender);
+                app.setPrice(price);
 
                 appList.add(app);
             }

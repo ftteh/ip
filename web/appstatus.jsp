@@ -56,8 +56,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/ip/GetRoomServlet"><span class="glyphicon glyphicon-usd"></span> Get Cash</a></li>
-            <li><a href="/ip/ViewAppServlet"><span class="glyphicon glyphicon-th-list"></span> View Cash</a></li> 
+            <li class="active"><a href="/ip/GetRoomServlet"><span class="glyphicon glyphicon-usd"></span> Apply Room</a></li>
+            <li><a href="/ip/ViewAppServlet"><span class="glyphicon glyphicon-th-list"></span> View Application</a></li> 
           </ul>
           <ul class="nav navbar-nav navbar-right">
       		<li class="dropdown">
@@ -99,10 +99,12 @@
         <p>&nbsp;</p>
         <div class="row">
             <div class="col-md-6">
-                College Application - Successful<br />
+                College Application - Successful<br />                
+                Room: <jsp:getProperty name="app" property="room"/> <br/>
                 College: <jsp:getProperty name="app" property="college"/> <br/>
-                Room: <jsp:getProperty name="app" property="type"/><br />
-                Gender: <jsp:getProperty name="app" property="gender"/><br />
+                Type: <jsp:getProperty name="app" property="type"/><br />
+                Gender: <jsp:getProperty name="app" property="gender"/><br /> 
+                Price: <jsp:getProperty name="app" property="price"/><br />
                 Back to <a href="/ip/GetRoomServlet">Apply Room</a>
             </div>
         </div>
