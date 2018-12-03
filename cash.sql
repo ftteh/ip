@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2018 at 06:44 AM
+-- Generation Time: Dec 03, 2018 at 07:28 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -40,7 +40,7 @@ CREATE TABLE `application` (
 --
 
 INSERT INTO `application` (`id`, `applicant`, `approval`, `room`) VALUES
-('123123', '123123', 'approved', '123123');
+('123123', '123123', 'pending', '123123');
 
 -- --------------------------------------------------------
 
@@ -54,15 +54,16 @@ CREATE TABLE `room` (
   `fm` varchar(10) NOT NULL,
   `type` varchar(10) NOT NULL,
   `college` varchar(10) NOT NULL,
-  `owner` varchar(50) NOT NULL
+  `price` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `room`
 --
 
-INSERT INTO `room` (`rid`, `status`, `fm`, `type`, `college`, `owner`) VALUES
-('789', 'available', 'female', 'single', '789', '789');
+INSERT INTO `room` (`rid`, `status`, `fm`, `type`, `college`, `price`) VALUES
+('789', 'available', 'female', 'single', '789', '789'),
+('111', 'available', 'female', 'single', '123', '123123');
 
 -- --------------------------------------------------------
 
@@ -84,6 +85,16 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`login`, `password`, `usertype`, `fullname`, `image`) VALUES
 ('a', 'a', 'admin', 'a', '');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `application`
+--
+ALTER TABLE `application`
+  ADD PRIMARY KEY (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

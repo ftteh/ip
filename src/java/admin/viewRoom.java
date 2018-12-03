@@ -72,7 +72,7 @@ public class viewRoom extends HttpServlet {
                 String fm = rs.getString("fm");
                 String type = rs.getString("type");
                 String college = rs.getString("college");
-                String owner = rs.getString("owner");
+                String price = rs.getString("price");
 
 
                 Room room = new Room();
@@ -81,7 +81,7 @@ public class viewRoom extends HttpServlet {
                 room.setFm(fm);
                 room.setType(type);
                 room.setCollege(college);
-                room.setOwner(owner);
+                room.setPrice(price);
                 roomList.add(room);
 
             }

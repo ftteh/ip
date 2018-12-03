@@ -26,10 +26,10 @@ public class Room {
     }
 
     /**
-     * @return the owner
+     * @return the price
      */
-    public String getOwner() {
-        return owner;
+    public String getPrice() {
+        return price;
     }
 
     /**
@@ -68,10 +68,10 @@ public class Room {
     }
 
     /**
-     * @param owner the owner to set
+     * @param price the price to set
      */
-    public void setOwner(String owner) {
-        this.owner = owner;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     /**
@@ -99,5 +99,5 @@ public class Room {
     private String fm;
     private String type;
     private String college;
-    private String owner;
+    private String price;
 }

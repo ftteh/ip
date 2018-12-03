@@ -108,7 +108,7 @@
                                     <th>fm</th>
                                     <th>type</th>
                                     <th>college</th>
-                                    <th>owner</th>
+                                    <th>price</th>
                                     <th>action</th>
                                 </tr>
                             </thead>
@@ -129,7 +129,7 @@
                                             <c:out value="${currentcurr.college}" />
                                         </td>
                                         <td>
-                                            <c:out value="${currentcurr.owner}" />
+                                            <c:out value="${currentcurr.price}" />
                                         </td>
 
                                         <c:if test="${currentcurr.status == 'owned'}">
@@ -204,9 +204,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="owner" class="col-lg-2 control-label">owner</label>
+                                    <label for="price" class="col-lg-2 control-label">price</label>
                                     <div class="col-lg-10">
-                                        <input class="form-control" id="owner" name="owner" placeholder="owner" type="text"
+                                        <input class="form-control" id="price" name="price" placeholder="price" type="text"
                                             required>
                                     </div>
                                 </div>

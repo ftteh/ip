@@ -69,10 +69,10 @@ public class insertRoom extends HttpServlet {
         String fm = request.getParameter("fm");
         String type = request.getParameter("type");
         String college = request.getParameter("college");
-        String owner = request.getParameter("owner");
+        String price = request.getParameter("price");
 
 
-        String sqlInsert = "INSERT INTO Room(rid,status,fm,type,college,owner) VALUES(?, ?, ?,?,?,?)";
+        String sqlInsert = "INSERT INTO Room(rid,status,fm,type,college,price) VALUES(?, ?, ?,?,?,?)";
         
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sqlInsert);
@@ -81,7 +81,7 @@ public class insertRoom extends HttpServlet {
             preparedStatement.setString(3, fm);
             preparedStatement.setString(4, type);
             preparedStatement.setString(5, college);
-            preparedStatement.setString(6, owner);
+            preparedStatement.setString(6, price);
             preparedStatement.executeUpdate();
 
             String sqlQuery = "SELECT * FROM room ";
@@ -96,7 +96,7 @@ public class insertRoom extends HttpServlet {
                 String room_fm = rs.getString("fm");
                 String room_type = rs.getString("type");
                 String room_college = rs.getString("college");
-                String room_owner = rs.getString("owner");
+                String room_price = rs.getString("price");
 
 
 
@@ -105,7 +105,7 @@ public class insertRoom extends HttpServlet {
                 // out.println(room_fm );
                 // out.println(room_type );
                 // out.println(room_college );
-                // out.println(room_owner );
+                // out.println(room_price );
 
                 Room room  = new Room();
                 room.setRid(room_rid);
@@ -113,7 +113,7 @@ public class insertRoom extends HttpServlet {
                 room.setFm(room_fm);
                 room.setType(room_type);
                 room.setCollege(room_college);
-                room.setOwner(room_owner);
+                room.setPrice(room_price);
                 roomList.add(room);
             }
         } catch (SQLException ex) {

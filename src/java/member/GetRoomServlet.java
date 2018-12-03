@@ -75,7 +75,7 @@ public class GetRoomServlet extends HttpServlet {
                 String roomGender = rs.getString("fm");
                 String roomType = rs.getString("type");
                 String roomCollege = rs.getString("college");
-                String roomOwner = rs.getString("owner");
+                String roomPrice = rs.getString("price");
 
                 Room room = new Room();
                 room.setStatus(roomStatus);
@@ -83,7 +83,7 @@ public class GetRoomServlet extends HttpServlet {
                 room.setFm(roomGender);
                 room.setType(roomType);
                 room.setCollege(roomCollege);
-                room.setOwner(roomOwner);
+                room.setPrice(roomPrice);
                 
                 roomList.add(room);
             }

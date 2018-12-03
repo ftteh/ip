@@ -115,7 +115,7 @@
                                 <th>fm</th>
                                 <th>type</th>
                                 <th>college</th>
-                                <th>owner</th>
+                                <th>price</th>
                                 <th>delete</th>
                             </tr>
                         </thead>
@@ -130,7 +130,7 @@
                                     <td><c:out value="${i.fm}" /></td>
                                     <td><c:out value="${i.type}" /></td>
                                     <td><c:out value="${i.college}" /></td>
-                                    <td><c:out value="${i.owner}" /></td>
+                                    <td><c:out value="${i.price}" /></td>
                                     <c:url value="deleteRoom" var="displayURL">
                                         <c:param name="rid" value="${i.rid}" /> 
                                     </c:url>
