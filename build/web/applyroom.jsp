@@ -110,6 +110,10 @@
                                             <c:forEach items="${sessionScope.roomlist}" var="room" varStatus="loop">
                                                 <c:if test="${room.status == 'available'}">
                                                     <option value="${room.rid}">${room.rid} | ${room.type}</option>
+                                                    <c:set scope="page" value="${room.rid}" var="id" />
+                                                    <c:set scope="page" value="${room.type}" var="t" />
+                                                    <c:set scope="page" value="${room.college}" var="c" />
+                                                    <c:set scope="page" value="${room.price}" var="p" />
                                                 </c:if>
                                             </c:forEach>
                                         </select>
@@ -129,10 +133,10 @@
                     <div class="col-md-6">                
                         <h3>Room Informations</h3>
                         <div class="well">
-                            Room Number: <br />
-                            Type: <br />
-                            College: <br />
-                            Price: RM <br />
+                            Room Number: <c:out value="${id}" /> <br />
+                            Type: <c:out value="${t}" /> <br />
+                            College: <c:out value="${c}" /><br />
+                            Price: RM <c:out value="${p}" /><br />
                         </div>
                     </div>                                           
                 </div>

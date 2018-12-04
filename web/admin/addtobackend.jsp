@@ -250,7 +250,7 @@
                                             <div class="col-sm-10">
 
                                                 <select class="form-control" id="approval" name="approval" required
-                                                    onchange=window.location.replace('/ip/updateApp?id=<c:out value="${currentcurr.id}" />&approval='+this.value)>
+                                                    onchange=window.location.replace('/ip/updateApp?id=<c:out value="${currentcurr.id}" />&applicant=<c:out value="${currentcurr.applicant}"/>&approval='+this.value)>
                                                     <c:if test="${currentcurr.approval == 'approved'}">
                                                         <c:url value="/updateApp" var="upApp">
                                                             <c:param name="id" value="${currentcurr.id}" />

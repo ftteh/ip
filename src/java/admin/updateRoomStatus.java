@@ -68,6 +68,7 @@ public class updateRoomStatus extends HttpServlet {
         // get form data from VIEW > V-I        
         String status = request.getParameter("status");
         String rid = request.getParameter("rid");
+        String applicant = request.getParameter("applicant");
         ArrayList roomList = new ArrayList();
 
         
@@ -82,6 +83,7 @@ public class updateRoomStatus extends HttpServlet {
         catch (SQLException ex) {            
         }
 
+        PrintWriter out=response.getWriter();
 
         String sqlQuery = "SELECT * FROM room";
         try {
