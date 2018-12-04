@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2018 at 07:28 AM
+-- Generation Time: Dec 04, 2018 at 10:10 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -40,7 +40,9 @@ CREATE TABLE `application` (
 --
 
 INSERT INTO `application` (`id`, `applicant`, `approval`, `room`) VALUES
-('123123', '123123', 'pending', '123123');
+('111', '123123', 'rejected', '111111'),
+('123123', '123123', 'rejected', '123123'),
+('33333', '123123', 'approved', '123');
 
 -- --------------------------------------------------------
 
@@ -62,8 +64,9 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`rid`, `status`, `fm`, `type`, `college`, `price`) VALUES
-('789', 'available', 'female', 'single', '789', '789'),
-('111', 'available', 'female', 'single', '123', '123123');
+('111', 'available', 'female', 'single', '123', '123123'),
+('123', 'available', 'female', 'single', 'ktf', '123123'),
+('789', 'available', 'female', 'single', '789', '789');
 
 -- --------------------------------------------------------
 
@@ -95,6 +98,12 @@ INSERT INTO `user` (`login`, `password`, `usertype`, `fullname`, `image`) VALUES
 --
 ALTER TABLE `application`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `room`
+--
+ALTER TABLE `room`
+  ADD PRIMARY KEY (`rid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
