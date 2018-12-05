@@ -114,12 +114,9 @@
                                                 <c:url value="/GetSelectedRoom" var="selRoom">
                                                     <c:param name="roomid" value="${room.rid}" />
                                                 </c:url>
-                                                       
-                                                <c:if test="${room.rid == roomSelect.rid}">
-                                                    <option value="${roomSelect.rid}">${roomSelect.rid} | ${roomSelect.type}</option>
-                                                </c:if>
+                                                
                                                 <c:if test="${room.status == 'available'}">
-                                                    <option value="${room.rid}">${room.rid} | ${room.type}</option>
+                                                    <option value="${room.rid}" ${room.rid == roomSelect.rid ? 'selected' : ''}>${room.rid} | ${room.type}</option>
                                                 </c:if>
                                                 
                                             </c:forEach>
