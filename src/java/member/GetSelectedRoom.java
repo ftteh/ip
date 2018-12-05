@@ -61,8 +61,7 @@ public class GetSelectedRoom extends HttpServlet {
         //Get the session object
 	HttpSession session = request.getSession();
         
-        ArrayList roomSelect = new ArrayList();
-        String rId = request.getParameter("roomid");        
+        String rId = request.getParameter("roomid");
         
         String sqlQuery = "SELECT * FROM room WHERE rid = ?";        
         try {
@@ -71,29 +70,26 @@ public class GetSelectedRoom extends HttpServlet {
             ResultSet rs = preparedStatement.executeQuery();
             
             while (rs.next()) {
-                String roomStatus = rs.getString("status");
                 String roomId = rs.getString("rid");
+                
                 String roomGender = rs.getString("fm");
                 String roomType = rs.getString("type");
                 String roomCollege = rs.getString("college");
                 String roomPrice = rs.getString("price");
-
-                Room room = new Room();
-                room.setStatus(roomStatus);
-                room.setRid(roomId);
-                room.setFm(roomGender);
-                room.setType(roomType);
-                room.setCollege(roomCollege);
-                room.setPrice(roomPrice);
                 
-                roomSelect.add(room);
+                Room roomSelect = new Room();
+                roomSelect.setRid(roomId);
+                roomSelect.setFm(roomGender);
+                roomSelect.setType(roomType);
+                roomSelect.setCollege(roomCollege);
+                roomSelect.setPrice(roomPrice);
+                
+                session.setAttribute("roomSelect", roomSelect);
+                response.sendRedirect(request.getContextPath() + "/applyroom.jsp");
             }
         }
         catch (SQLException ex) {            
         }
-        
-        session.setAttribute("roomSelect", roomSelect);
-        response.sendRedirect(request.getContextPath() + "/applyroom.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

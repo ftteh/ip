@@ -11,6 +11,7 @@
 </c:if>
 
 <jsp:useBean id="memberprofile" class="bean.User" scope="session" />
+<jsp:useBean id="roomSelect" class="bean.Room" scope="session" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -107,15 +108,20 @@
                                     <label for="room" class="col-lg-2 control-label">Room</label>
                                     <div class="col-lg-10">
                                         <select class="form-control" id="roomid" name="roomid" required 
-                                                onchange="onchange=window.location.replace('/ip/GetSelectedRoom?roomid='+this.value)">
+                                                onchange="window.location.replace('/ip/GetSelectedRoom?roomid='+this.value)">
                                             <c:forEach items="${sessionScope.roomlist}" var="room" varStatus="loop">
+                                                
+                                                <c:url value="/GetSelectedRoom" var="selRoom">
+                                                    <c:param name="roomid" value="${room.rid}" />
+                                                </c:url>
+                                                       
+                                                <c:if test="${room.rid == roomSelect.rid}">
+                                                    <option value="${roomSelect.rid}">${roomSelect.rid} | ${roomSelect.type}</option>
+                                                </c:if>
                                                 <c:if test="${room.status == 'available'}">
                                                     <option value="${room.rid}">${room.rid} | ${room.type}</option>
-                                                    <c:set scope="page" value="${room.rid}" var="id" />
-                                                    <c:set scope="page" value="${room.type}" var="t" />
-                                                    <c:set scope="page" value="${room.college}" var="c" />
-                                                    <c:set scope="page" value="${room.price}" var="p" />
                                                 </c:if>
+                                                
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -134,10 +140,11 @@
                     <div class="col-md-6">                
                         <h3>Room Informations</h3>
                         <div class="well">
-                            Room Number: <c:out value="${id}" /> <br />
-                            Type: <c:out value="${t}" /> <br />
-                            College: <c:out value="${c}" /><br />
-                            Price: RM <c:out value="${p}" /><br />
+                                Room Number: <c:out value="${roomSelect.rid}" /> <br />
+                                Type: <c:out value="${roomSelect.type}" /> <br />
+                                Gender: <c:out value="${roomSelect.fm}" /> <br/>
+                                College: <c:out value="${roomSelect.college}" /> <br />
+                                Price: RM <c:out value="${roomSelect.price}" /><br />
                         </div>
                     </div>                                           
                 </div>
