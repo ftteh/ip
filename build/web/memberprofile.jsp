@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="bean.User" %>
 
-<c:if test="${sessionScope.memberprofile != null}">
+<c:if test="${sessionScope.memberprofile == null}">
     <% response.sendRedirect(request.getContextPath() + "/terminate.html"); %>
 </c:if>
 
