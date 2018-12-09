@@ -1,2 +1,13 @@
 maybe the redirection of update and initializer can combine/restructure
-the admin bar n profile?
+the admin bar 
+
+profile -jt
+manage backend -tft
+login - ml
+register - yow
+homepage user - wy
+homepage admin - tft
+application - wy
+status - ml
+view - yow
+admin - 3 manage (admint) - tft
