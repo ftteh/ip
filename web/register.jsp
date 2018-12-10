@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html>
 
     <head>
-
+        <title>Register</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
         <!-- jQuery library -->
@@ -86,7 +87,7 @@
                 height: auto;
                 padding: 50px 0px;
             }
-            /* form ba?lang?ç stiller ------------------------------- */
+            /* form ba?lang?? stiller ------------------------------- */
 
             .group {
                 position: relative;
@@ -243,7 +244,7 @@
                 font-weight: 100;
                 margin-right: 10px;
             }
-            /* Geçi? Links Forgot and Create */
+            /* Ge?i? Links Forgot and Create */
 
             .zaten-hesap-var-link {
                 color: #bbb;
@@ -278,34 +279,32 @@
 
         <div class="col-lg-4 col-md-7 col-sm-6 col-xs-12 login-card">
 
-            <!-- Login (giri?) Form Sayfas? -->
+
             <form id="login-form" class="col-lg-12" action="/ip/RegisterServlet" method="POST">
 
-                <!-- Logo -->
+     
                 <div class="col-lg-12 logo-kapsul">
                     <img width="100" class="logo" src="https://selimdoyranli.com/cdn/material-form/img/logo.png" alt="Logo" />
                 </div>
-                <!-- #Logo Biti? -->
+    
 
                 <div style="clear:both;"></div>
 
-                <!-- Kullan?c? Ad? Giri? ?nput -->
+        
                 <div class="group">
-                    <input type="text" required>
-                    <span class="highlight"></span>
+                   <input class="form-control" id="login" name="login" placeholder="Login" type="text" required>
+                 <span class="highlight"></span>
                     <span class="bar"></span>
                     <label><i class="material-icons input-ikon">person_outline</i><span class="span-input">Login ID</span></label>
                 </div>
-                <!-- #Kullan?c? Ad? Giri? ?nput Biti? -->
-
-                <!-- ?ifre ?nput Giri?-->
+ 
                 <div class="group">
-                    <input type="password" required>
+                     <input class="form-control" id="password" name="password" placeholder="Password" type="password" required>
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label><i class="material-icons input-sifre-ikon">lock</i><span class="span-input">Password</span></label>
                 </div>
-                <!-- ?ifre ?nput Giri? Biti?-->
+
 
                 <button type="submit" class="giris-yap-buton"><span class="glyphicon glyphicon-ok"></span> Submit</button>
 
