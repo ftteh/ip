@@ -1,0 +1,135 @@
+<div class="row">
+    <div class="col-md-6 login-form-1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Application List</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed" style="border-collapse:collapse;">
+
+                    <thead>
+                        <tr>
+                            <th> </th>
+                            <th>room</th>
+                            <th>approval</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <c:forEach items="${sessionScope.appList}" var="currentcurr" varStatus="loop">
+
+                            <tr data-toggle="collapse" data-target="#<c:out value=" ${currentcurr.applicant}" />
+                            <c:out value="${currentcurr.id}" />"
+                            class="accordion-toggle">
+                            <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>
+                            <td>
+                                <c:out value="${currentcurr.room}" />
+                            </td>
+                            <td>
+                                <select class="form-control" id="approval" name="approval" required onchange=window.location.replace('/ip/updateApp?id=
+                                    <c:out value="${currentcurr.id}" />&applicant=
+                                <c:out value="${currentcurr.applicant}" />&approval='+this.value)>
+                                <c:if test="${currentcurr.approval == 'approved'}">
+                                    <c:url value="/updateApp" var="upApp">
+                                        <c:param name="id" value="${currentcurr.id}" />
+                                        <c:param name="approval" value="approval" />
+                                    </c:url>
+                                    <c:out value='<option value="approved" selected >approved</option>' escapeXml="false" />
+                                    <c:out value='<option value="pending">pending</option>' escapeXml="false" />
+                                    <c:out value='<option value="rejected">rejected</option>' escapeXml="false" />
+                                </c:if>
+                                <c:if test="${currentcurr.approval == 'pending'}">
+                                    <c:url value="/updateApp" var="upApp">
+                                        <c:param name="id" value="${currentcurr.id}" />
+                                        <c:param name="approval" value="approval" />
+                                    </c:url>
+                                    <c:out value='<option value="approved"  >approved</option>' escapeXml="false" />
+                                    <c:out value='<option value="pending" selected>pending</option>' escapeXml="false" />
+                                    <c:out value='<option value="rejected">rejected</option>' escapeXml="false" />
+                                </c:if>
+                                <c:if test="${currentcurr.approval == 'rejected'}">
+                                    <c:url value="/updateApp" var="upApp">
+                                        <c:param name="id" value="${currentcurr.id}" />
+                                        <c:param name="approval" value="approval" />
+                                    </c:url>
+                                    <c:out value='<option value="approved" >approved</option>' escapeXml="false" />
+                                    <c:out value='<option value="pending">pending</option>' escapeXml="false" />
+                                    <c:out value='<option value="rejected" selected>rejected</option>' escapeXml="false" />
+                                </c:if>
+                                </select>
+                            </td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="12" class="hiddenRow">
+                                    <div class="accordian-body collapse" id="<c:out value=" ${currentcurr.applicant}" />
+                                    <c:out value="${currentcurr.id}" />">
+                                    <table class="table table-striped">
+                                        <tr>
+
+                                            <td>
+                                                <c:out value="${currentcurr.id}" />
+                                            </td>
+                                            <td>
+                                                <c:out value="${currentcurr.applicant}" />
+                                            </td>
+                                        </tr>
+                                    </table>
+
+            </div>
+            </td>
+            </tr>
+            </c:forEach>
+            </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+<div class="col-md-6 login-form-2">
+    <h3>Add New Application</h3>
+    <div class="well">
+        <form class="form-horizontal" action="/ip/admin/insertApp" method="post">
+            <fieldset>
+                <div class="form-group">
+                    <label for="id" class="col-lg-2 control-label">ID</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" id="id" name="id" placeholder="id" type="text" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="applicant" class="col-lg-2 control-label">applicant</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" id="applicant" name="applicant" placeholder="applicant" type="text"
+                            required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="approval" class="col-lg-2 control-label">approval</label>
+                    <div class="col-lg-10">
+                        <select class="form-control" id="approval" name="approval" required>
+                            <option value="approved">approved</option>
+                            <option value="pending">pending</option>
+                            <option value="rejected">rejected</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="room" class="col-lg-2 control-label">room</label>
+                    <div class="col-lg-10">
+                        <input class="form-control" id="room" name="room" placeholder="room" type="text" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+</div>
+</div>

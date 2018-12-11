@@ -1,142 +1,316 @@
-<%-- 
-    Document   : register
-    Created on : Nov 5, 2014, 2:42:17 PM
-    Author     : MSI
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
 
-    <title>Cash - Guest</title>
+<html>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <head>
+        <title>Register</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
-    <!-- Custom styles for this template -->
-    <link href="css/navbar-fixed-top.css" rel="stylesheet">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="js/ie-emulation-modes-warning.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!------ Include the above in your HEAD tag ---------->
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background:#eee;
+                font-family: roboto;
+                display:flex; /* You delete it on your web page */
+                justify-content:center;/* and this - delete */
+            }
+            a:hover,
+            a:focus {
+                text-decoration: none;
+                color: #eee;
+            }
+            .login-card {
+                min-height: 100vh;
+                background-image: url('https://selimdoyranli.com/cdn/material-form/img/bg.jpg');
+                background-size: cover;
+                -moz-background-size: cover;
+                -ms-background-size: cover;
+                -wenkit-background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+                position: relative;
+                border-radius: 5px;
+                -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+                box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+                z-index: 2;
+                padding: 0;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                font-family: roboto!important;
+            }
+            .login-card:after {
+                background: linear-gradient(-135deg, rgb(63, 81, 181), rgb(233, 30, 99));
+                /* Login Card Arkaplan Rengi */
 
-  <body>
+                background: -webkit-linear-gradient(-135deg, rgb(63, 81, 181), rgb(233, 30, 99));
+                /* Login Card Arkaplan Rengi */
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/cash/index.html"><span class="glyphicon glyphicon-home"></span> <span style="color:#FFFF00">CashWeb</span></a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/ip/register.jsp"><span class="glyphicon glyphicon-pencil"></span> Register</a></li>
-      		<li class="dropdown">
-		        <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-info-sign"></span> Info <b class="caret"></b></a>
-			        <ul class="dropdown-menu">
-			          <li><a href="#"><span class="glyphicon glyphicon-globe"></span> About Us</a></li>
-			          <li><a href="#"><span class="glyphicon glyphicon-list"></span> Our Products</a></li>
-			          <li><a href="#"><span class="glyphicon glyphicon-briefcase"></span> Our Services</a></li>
-                      <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Contact Us</a></li>
-			        </ul>
-		  	</li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                content: "";
+                opacity: 0.8;
+                z-index: 3;
+            }
+            .login-card > form {
+                z-index: 4;
+                position: relative;
+                padding: 0px 25px;
+                width: 100%;
+            }
+            .logo-kapsul {
+                text-align: center;
+                position: relative;
+                opacity: 0.8;
+            }
+            .logo {
+                height: auto;
+                padding: 50px 0px;
+            }
+            /* form ba?lang?? stiller ------------------------------- */
 
-    <div class="container">
+            .group {
+                position: relative;
+                margin-bottom: 45px;
+            }
+            .group input {
+                font-size: 18px;
+                padding: 10px 10px 10px 10px;
+                display: block;
+                width: 100%;
+                border: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                background: none;
+                color: #eee;
+            }
+            .group input:focus {
+                outline: none;
+            }
+            /* LABEL ======================================= */
 
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>Cash Web-App example</h1>
-        <ul>
-          <li>Responsive application</li>
-          <li>Bootstrap CSS</li>
-          <li>MVC
-            <ul>
-              <li>(M)odel - JavaBeans</li>
-              <li>(V)iew - JSP for input and output</li>
-              <li>(C)ontroller - Servlet</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="well">
-        <h3>Please Register</h3>
-        <p>&nbsp;</p>
-        <div class="row">
-            <div class="col-md-6"> 
-                
-<form class="form-horizontal" action="/cash/RegisterServlet" method="post">
-  <fieldset>
-    <div class="form-group">
-      <label for="login" class="col-lg-2 control-label">Login</label>
-      <div class="col-lg-10">
-        <input class="form-control" id="login" name="login" placeholder="Login" type="text" required>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="password" class="col-lg-2 control-label">Password</label>
-      <div class="col-lg-10">
-        <input class="form-control" id="password" name="password" placeholder="Password" type="password" required>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="fullname" class="col-lg-2 control-label">Full name</label>
-      <div class="col-lg-10">
-        <input class="form-control" id="fullname" name="fullname" placeholder="Full name" type="text" required>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Submit</button>
-      </div>
-    </div>
-  </fieldset>
-</form>                
+            .group label {
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 18px;
+                font-weight: normal;
+                position: absolute;
+                pointer-events: none;
+                left: 5px;
+                top: 5px;
+                transition: 0.2s ease all;
+                -moz-transition: 0.2s ease all;
+                -webkit-transition: 0.2s ease all;
+            }
+            /* active durum */
+
+            .group input:focus ~ label,
+            input:valid ~ label {
+                top: -20px;
+                font-size: 14px;
+                color: rgba(255, 255, 255, 0.7);
+            }
+            /* BOTTOM BARS ================================= */
+
+            .bar {
+                position: relative;
+                display: block;
+                width: 100%;
+            }
+            .bar:before,
+            .bar:after {
+                content: '';
+                height: 2px;
+                width: 0;
+                bottom: 1px;
+                position: absolute;
+                background: rgba(255, 255, 255, 0.7);
+                transition: 0.2s ease all;
+                -moz-transition: 0.2s ease all;
+                -webkit-transition: 0.2s ease all;
+            }
+            .bar:before {
+                left: 50%;
+            }
+            .bar:after {
+                right: 50%;
+            }
+            /* active durum bar */
+
+            .group input:focus ~ .bar:before,
+            .group input:focus ~ .bar:after {
+                width: 50%;
+            }
+            /* HIGHLIGHTER ================================== */
+
+            .highlight {
+                position: absolute;
+                height: 0%;
+                width: 100px;
+                top: 25%;
+                left: 0;
+                pointer-events: none;
+                opacity: 0.5;
+            }
+            /* active durum */
+
+            .group input:focus ~ .highlight {
+                -webkit-animation: inputHighlighter 0.3s ease;
+                -moz-animation: inputHighlighter 0.3s ease;
+                animation: inputHighlighter 0.3s ease;
+            }
+            /* form animasyon ================ */
+
+            @-webkit-keyframes inputHighlighter {
+                from {
+                    background: rgba(255, 255, 255, 0.7);
+                }
+                to {
+                    width: 0;
+                    background: transparent;
+                }
+            }
+            @-moz-keyframes inputHighlighter {
+                from {
+                    background: rgba(255, 255, 255, 0.7);
+                }
+                to {
+                    width: 0;
+                    background: transparent;
+                }
+            }
+            @keyframes inputHighlighter {
+                from {
+                    background: rgba(255, 255, 255, 0.7);
+                }
+                to {
+                    width: 0;
+                    background: transparent;
+                }
+            }
+            .input-ikon {
+                font-size: 25px!important;
+                position: relative;
+            }
+            .input-sifre-ikon {
+                font-size: 22px!important;
+                position: relative;
+            }
+            .span-input {
+                margin-left: 10px;
+                position: relative;
+                top: -5px;
+            }
+            .giris-yap-buton,
+            .sifre-hatirlat-buton {
+                background: linear-gradient(-135deg, rgb(63, 81, 181), rgb(233, 30, 99));
+                background: -webkit-linear-gradient(-135deg, rgb(63, 81, 181), rgb(233, 30, 99));
+                display: block;
+                text-align: center;
+                text-decoration: none;
+                color: #eee;
+                font-family: roboto;
+                font-weight: 100;
+                padding: 10px;
+                border-radius: 3px;
+                outline: none;
+                opacity: 0.8;
+            }
+            .forgot-and-create {
+                margin: 20px 0px;
+            }
+            .forgot-and-create a {
+                color: #bbb;
+                font-size: 12px;
+                text-decoration: none;
+                font-weight: 100;
+                margin-right: 10px;
+            }
+            /* Ge?i? Links Forgot and Create */
+
+            .zaten-hesap-var-link {
+                color: #bbb;
+                font-size: 14px;
+                padding: 20px 0px;
+                text-decoration: none;
+                display: block;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="home.jsp"><span class="glyphicon glyphicon-home"></span>Hostel</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ip/GetRoomServlet"><span class="glyphicon glyphicon-usd"></span> Apply Room</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ip/ViewAppServlet"><span class="glyphicon glyphicon-th-list"></span> View Application</a>
+                    </li>
+                </ul>
             </div>
+        </nav>
+
+        <div class="col-lg-4 col-md-7 col-sm-6 col-xs-12 login-card">
+
+
+            <form id="login-form" class="col-lg-12" action="/ip/RegisterServlet" method="POST">
+
+     
+                <div class="col-lg-12 logo-kapsul">
+                    <img width="100" class="logo" src="https://selimdoyranli.com/cdn/material-form/img/logo.png" alt="Logo" />
+                </div>
+    
+
+                <div style="clear:both;"></div>
+
+        
+                <div class="group">
+                   <input class="form-control" id="login" name="login" placeholder="Login" type="text" required>
+                 <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label><i class="material-icons input-ikon">person_outline</i><span class="span-input">Login ID</span></label>
+                </div>
+ 
+                <div class="group">
+                     <input class="form-control" id="password" name="password" placeholder="Password" type="password" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label><i class="material-icons input-sifre-ikon">lock</i><span class="span-input">Password</span></label>
+                </div>
+
+
+                <button type="submit" class="giris-yap-buton"><span class="glyphicon glyphicon-ok"></span> Submit</button>
+
+            </form>
+
         </div>
-      </div>
-      
-      <div class="well">
-      <footer>
-      	<p>&copy; RBK 2014 - SCJ/SCSJ 2303/3303</p>
-      </footer>
-      </div>
 
-    </div> <!-- /container -->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
-  </body>
+    </body>
 </html>
