@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2018 at 10:10 AM
+-- Generation Time: Dec 11, 2018 at 06:10 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -40,9 +40,8 @@ CREATE TABLE `application` (
 --
 
 INSERT INTO `application` (`id`, `applicant`, `approval`, `room`) VALUES
-('111', '123123', 'rejected', '111111'),
-('123123', '123123', 'rejected', '123123'),
-('33333', '123123', 'approved', '123');
+('7878', 'yuyu', 'pending', '23232'),
+('eq', 'eq', 'approved', 'eq');
 
 -- --------------------------------------------------------
 
@@ -64,9 +63,8 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`rid`, `status`, `fm`, `type`, `college`, `price`) VALUES
-('111', 'available', 'female', 'single', '123', '123123'),
-('123', 'available', 'female', 'single', 'ktf', '123123'),
-('789', 'available', 'female', 'single', '789', '789');
+('eq', 'owned', 'female', 'single', 'eq', 'eq'),
+('we', 'owned', 'female', 'single', 'we', 'we');
 
 -- --------------------------------------------------------
 
@@ -87,6 +85,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`login`, `password`, `usertype`, `fullname`, `image`) VALUES
+('c', 'c', 'client', 'c', 'c'),
+('eq', 'eq', 'admin', 'eq', ''),
 ('a', 'a', 'admin', 'a', '');
 
 --
@@ -104,6 +104,12 @@ ALTER TABLE `application`
 --
 ALTER TABLE `room`
   ADD PRIMARY KEY (`rid`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`login`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
