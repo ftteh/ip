@@ -125,9 +125,10 @@
                     <form class="form-horizontal" action="/ip/ApplicationServlet" method="post">
 
                         <div class="form-group">
-                            <label for="room" class="col-lg-1 control-label">Room</label>
+                         <label for="room" class="col-lg-1 control-label">Room</label>
                             <div class="col-lg-8">
-                                <select class="form-control" id="roomid" name="roomid" required onchange="window.location.replace('/ip/GetSelectedRoom?roomid=' + this.value)">
+                           <select class="form-control" id="roomid"  name="roomid" required onchange="window.location.replace('/ip/GetSelectedRoom?roomid=' + this.value)">
+                                    
                                     <c:forEach items="${sessionScope.roomlist}" var="room" varStatus="loop">
 
                                         <c:url value="/GetSelectedRoom" var="selRoom">

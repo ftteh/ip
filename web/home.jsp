@@ -34,6 +34,9 @@
                 width:100%;
                 height:auto;
             }
+            h2, p{
+                color: black;
+            }
         </style>
     </head>
 
@@ -89,13 +92,12 @@
                 <div class="carousel-item active">
                     <a href="https://bootstrapcreative.com/">
 
-                        <img src="https://dummyimage.com/1000x400/444/" alt="responsive image" class="d-block img-fluid">
+                        <img src="https://architectenweb.nl/media/illustrations/2016/11/bb9b9e71-bd19-4931-94fc-78376729d95a_400.jpg" alt="responsive image" class="d-block img-fluid">
 
                         <div class="carousel-caption">
                             <div>
-                                <h2>Digital Craftsmanship</h2>
-                                <p>We meticously build each site to get results</p>
-                                <span class="btn btn-sm btn-outline-secondary">Learn More</span>
+                                <h2>Common Area</h2>
+                                <p>A place to meet with friends for discussion</p>
                             </div>
                         </div>
                     </a>
@@ -105,13 +107,12 @@
 
                 <div class="carousel-item">
                     <a href="https://bootstrapcreative.com/">
-                        <img src="https://dummyimage.com/1000x400/444/" alt="responsive image" class="d-block img-fluid">
+                        <img src="http://www.happynesthostel.com/uploads/fade/2016-10-2714775737970.23136700%201477573797_.jpg" alt="responsive image" class="d-block img-fluid">
 
                         <div class="carousel-caption justify-content-center align-items-center">
                             <div>
                                 <h2>Every project begins with a sketch</h2>
                                 <p>We work as an extension of your business to explore solutions</p>
-                                <span class="btn btn-sm btn-outline-secondary">Our Process</span>
                             </div>
                         </div>
                     </a>
@@ -120,14 +121,13 @@
                 <div class="carousel-item">
                     <a href="https://bootstrapcreative.com/">
 
-                        <img src="https://dummyimage.com/1000x400/444/" alt="responsive image" class="d-block img-fluid">
+                        <img src="https://i.pinimg.com/originals/50/c8/9c/50c89c2a077cd3c03cb1186ebe731dcf.jpg" alt="responsive image" class="d-block img-fluid">
 
 
                         <div class="carousel-caption justify-content-center align-items-center">
                             <div>
                                 <h2>Performance Optimization</h2>
                                 <p>We monitor and optimize your site's long-term performance</p>
-                                <span class="btn btn-sm btn-secondary">Learn How</span>
                             </div>
                         </div>
                     </a>
