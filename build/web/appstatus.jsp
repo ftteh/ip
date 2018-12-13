@@ -109,7 +109,7 @@ border:1px solid #ccc !important;
                         (Member)<b class="caret"></b>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/ip/memberprofile.jsp"><span class="glyphicon glyphicon-user"></span>
+                        <a class="dropdown-item" href="/ip/viewProfileServlet"><span class="glyphicon glyphicon-user"></span>
                             User Profile</a>
                         <a class="dropdown-item" href="/ip/MemberSettingServlet"><span class="glyphicon glyphicon-cog"></span>
                             Setting</a>
