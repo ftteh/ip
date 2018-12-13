@@ -79,6 +79,9 @@
                 box-shadow: 0 0 0 1px #30cd00 inset, 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 3px 1px rgba(0, 0, 0, 0.3);
                 background-color: #78d739;
             }
+            label{
+               font-size: larger;
+            }
         </style>
     </head>
 
@@ -124,9 +127,9 @@
                     <h3>Application Form</h3>
                     <form class="form-horizontal" action="/ip/ApplicationServlet" method="post">
 
-                        <div class="form-group">
-                         <label for="room" class="col-lg-1 control-label">Room</label>
-                            <div class="col-lg-8">
+                        <div class="form-group row">
+                         <label for="room" class="col-lg-2 control-label">Room</label>
+                            <div class="col-lg-7">
                            <select class="form-control" id="roomid"  name="roomid" required onchange="window.location.replace('/ip/GetSelectedRoom?roomid=' + this.value)">
                                     
                                     <c:forEach items="${sessionScope.roomlist}" var="room" varStatus="loop">

@@ -90,8 +90,6 @@
             <div class="carousel-inner" role="listbox">
 
                 <div class="carousel-item active">
-                    <a href="https://bootstrapcreative.com/">
-
                         <img src="https://architectenweb.nl/media/illustrations/2016/11/bb9b9e71-bd19-4931-94fc-78376729d95a_400.jpg" alt="responsive image" class="d-block img-fluid">
 
                         <div class="carousel-caption">
@@ -100,37 +98,31 @@
                                 <p>A place to meet with friends for discussion</p>
                             </div>
                         </div>
-                    </a>
                 </div>
                 <!-- /.carousel-item -->
 
 
                 <div class="carousel-item">
-                    <a href="https://bootstrapcreative.com/">
                         <img src="http://www.happynesthostel.com/uploads/fade/2016-10-2714775737970.23136700%201477573797_.jpg" alt="responsive image" class="d-block img-fluid">
 
                         <div class="carousel-caption justify-content-center align-items-center">
                             <div>
-                                <h2>Every project begins with a sketch</h2>
-                                <p>We work as an extension of your business to explore solutions</p>
+                                <h2>Room for Everyone</h2>
+                                <p>A place like home</p>
                             </div>
                         </div>
-                    </a>
                 </div>
                 <!-- /.carousel-item -->
                 <div class="carousel-item">
-                    <a href="https://bootstrapcreative.com/">
-
                         <img src="https://i.pinimg.com/originals/50/c8/9c/50c89c2a077cd3c03cb1186ebe731dcf.jpg" alt="responsive image" class="d-block img-fluid">
 
 
                         <div class="carousel-caption justify-content-center align-items-center">
                             <div>
-                                <h2>Performance Optimization</h2>
-                                <p>We monitor and optimize your site's long-term performance</p>
+                                <h2>Car Park</h2>
+                                <p>A place convenience to everyone</p>
                             </div>
                         </div>
-                    </a>
                 </div>
                 <!-- /.carousel-item -->
             </div>
@@ -145,6 +137,9 @@
             </a>
         </div>
         <!-- /.carousel -->
+        <script>
+            var heightSlider = $('.navbar').height();
+            $('#carousel-2').css({ marginTop : heightSlider + 40 + 'px' });
+        </script>
     </body>
-
 </html>

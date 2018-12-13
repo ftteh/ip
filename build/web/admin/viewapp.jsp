@@ -1,7 +1,7 @@
 <%-- 
     Document   : admin viewcash
     Created on : Nov 7, 2014, 3:05:39 PM
-    Author     : U
+    Author     : cool man
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
