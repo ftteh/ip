@@ -6,9 +6,9 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%--<c:if test="${sessionScope.adminprofile == null}">
+<c:if test="${sessionScope.adminprofile == null}">
     <% response.sendRedirect(request.getContextPath() + "/admin/terminate.html"); %>
-</c:if>--%>
+</c:if>
 
 <!DOCTYPE html>
 <html lang="en">
