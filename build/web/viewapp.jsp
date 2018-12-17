@@ -145,6 +145,7 @@
                                     <th>Details</th>
                                     <th>Room No</th>
                                     <th>Status</th>
+                                    <th>Booking Date</th>
                                 </tr>
                             </thead>
 
@@ -169,6 +170,7 @@
                                     <c:if test="${currentapp.approval == 'rejected'}">
                                         <c:set var="rejected" scope="page" value="${rejected + 1}"/>
                                     </c:if>
+                                    <td><c:out value="${currentapp.bookingdate}" /></td>
                                 </tr>
                                 <tr>
                                     <td colspan="12" class="hiddenRow">

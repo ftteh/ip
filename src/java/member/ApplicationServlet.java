@@ -64,7 +64,7 @@ public class ApplicationServlet extends HttpServlet {
         String applicant = request.getParameter("login");
         String roomId = request.getParameter("roomid");
              
-        String sqlInsert = "INSERT INTO application(applicant, approval, room) VALUES(?, 'pending', ?)"; 
+        String sqlInsert = "INSERT INTO application(applicant, approval, room, bookingdate) VALUES(?, 'pending', ?, NOW())"; 
  
         
         try {

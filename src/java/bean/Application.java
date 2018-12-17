@@ -75,6 +75,7 @@ public class Application {
     private String type;
     private String college;
     private String price;
+    private String bookingdate;
 
     /**
      * @return the gender
@@ -130,6 +131,20 @@ public class Application {
      */
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    /**
+     * @return the bookingdate
+     */
+    public String getBookingdate() {
+        return bookingdate;
+    }
+
+    /**
+     * @param bookingdate the bookingdate to set
+     */
+    public void setBookingdate(String bookingdate) {
+        this.bookingdate = bookingdate;
     }
 
 }
