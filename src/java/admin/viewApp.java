@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import jdbc.JDBCUtility;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -72,12 +74,26 @@ public class viewApp extends HttpServlet {
                 String applicant = rs.getString("applicant");
                 String approval = rs.getString("approval");
                 String room = rs.getString("room");
+               
+                String bookingdate = rs.getString("bookingdate");
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date date = new Date();
+                try {
+                   date = formatter.parse(bookingdate);
+                } catch (Exception ex) {}
+
+                //convert to MY format dd-MM-yyyy
+                formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss a");
+                bookingdate = formatter.format(date);
+
+
 
                 Application application = new Application();
                 application.setId(id);
                 application.setApplicant(applicant);
                 application.setApproval(approval);
                 application.setRoom(room);
+                application.setBookingdate(bookingdate);
                 appList.add(application);
 
             }
