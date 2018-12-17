@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -69,7 +71,7 @@ public class ViewAppServlet extends HttpServlet {
         
         ArrayList appList = new ArrayList();        
         
-        String sqlQuery = "SELECT application.approval, room.type, room.college, room.rid, room.fm, room.price" +
+        String sqlQuery = "SELECT application.approval,application.bookingdate, room.type, room.college, room.rid, room.fm, room.price" +
                           " FROM application, room" +
                           " WHERE application.room = room.rid" +
                           " AND application.applicant = '" + login + "'" +
@@ -87,6 +89,19 @@ public class ViewAppServlet extends HttpServlet {
                 String gender = rs.getString("fm");
                 String price = rs.getString("price");
                 
+                //yyyy-MM-dd HH:mm:ss
+                //parse the date from string for date conversion
+                String bookingdate = rs.getString("bookingdate");
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date date = new Date();
+                try {
+                   date = formatter.parse(bookingdate);
+                } catch (Exception ex) {}
+                
+                //convert to MY format dd-MM-yyyy
+                formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss a");
+                bookingdate = formatter.format(date);
+                
                 Application app = new Application();
                 app.setType(type);
                 app.setCollege(college);
@@ -94,6 +109,7 @@ public class ViewAppServlet extends HttpServlet {
                 app.setRoom(room);
                 app.setGender(gender);
                 app.setPrice(price);
+                app.setBookingdate(bookingdate);
 
                 appList.add(app);
             }
