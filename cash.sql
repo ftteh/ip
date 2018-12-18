@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2018 at 06:10 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.11
+-- Generation Time: Dec 18, 2018 at 12:11 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -29,19 +29,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `application` (
-  `id` varchar(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `applicant` varchar(11) NOT NULL,
   `approval` varchar(11) NOT NULL,
-  `room` varchar(10) NOT NULL
+  `room` varchar(10) NOT NULL,
+  `bookingdate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `application`
 --
 
-INSERT INTO `application` (`id`, `applicant`, `approval`, `room`) VALUES
-('7878', 'yuyu', 'pending', '23232'),
-('eq', 'eq', 'approved', 'eq');
+INSERT INTO `application` (`id`, `applicant`, `approval`, `room`, `bookingdate`) VALUES
+(2, 'user', 'approved', 'M02', '2018-12-18 17:04:52'),
+(3, 'user', 'rejected', 'F01', '2018-12-18 17:27:33'),
+(4, 'tester', 'rejected', 'M01', '2018-12-18 19:02:46'),
+(5, 'tester', 'pending', 'F02', '2018-12-18 19:02:52');
 
 -- --------------------------------------------------------
 
@@ -63,8 +66,10 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`rid`, `status`, `fm`, `type`, `college`, `price`) VALUES
-('eq', 'owned', 'female', 'single', 'eq', 'eq'),
-('we', 'owned', 'female', 'single', 'we', 'we');
+('F01', 'available', 'female', 'single', 'KTF', '630'),
+('F02', 'available', 'female', 'double', 'KTF', '600'),
+('M01', 'available', 'male', 'single', 'KTDI', '650'),
+('M02', 'owned', 'male', 'double', 'KTDI', '550');
 
 -- --------------------------------------------------------
 
@@ -73,21 +78,21 @@ INSERT INTO `room` (`rid`, `status`, `fm`, `type`, `college`, `price`) VALUES
 --
 
 CREATE TABLE `user` (
-  `login` varchar(10) NOT NULL DEFAULT '',
-  `password` varchar(10) NOT NULL DEFAULT '',
-  `usertype` varchar(6) NOT NULL DEFAULT '',
-  `fullname` varchar(25) NOT NULL DEFAULT '',
-  `image` varchar(30) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `login` varchar(100) NOT NULL,
+  `fullname` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `usertype` varchar(100) NOT NULL,
+  `image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`login`, `password`, `usertype`, `fullname`, `image`) VALUES
-('c', 'c', 'client', 'c', 'c'),
-('eq', 'eq', 'admin', 'eq', ''),
-('a', 'a', 'admin', 'a', '');
+INSERT INTO `user` (`login`, `fullname`, `password`, `usertype`, `image`) VALUES
+('admin', 'admin', 'a', 'admin', 'a'),
+('tester', 'zzz', 't', 'client', 'z'),
+('user', 'haha', 'u', 'client', 'a');
 
 --
 -- Indexes for dumped tables
@@ -110,6 +115,16 @@ ALTER TABLE `room`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`login`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `application`
+--
+ALTER TABLE `application`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
