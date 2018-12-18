@@ -3,7 +3,7 @@
 <%@ page import="bean.User" %>
 
 <c:if test="${sessionScope.memberprofile == null}">
-    <% response.sendRedirect(request.getContextPath() + "/terminate.html");%>
+    <% response.sendRedirect(request.getContextPath() + "/index.html");%>
 </c:if>
 
 <jsp:useBean id="memberprofile" class="bean.User" scope="session" />
@@ -16,6 +16,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <!--font awesome-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -42,7 +44,7 @@
 
     <body>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="home.jsp"><span class="glyphicon glyphicon-home"></span>Hostel</a>
+            <a class="navbar-brand" href="home.jsp"><i class="fas fa-bed"></i> Hostel</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,24 +54,24 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/ip/GetRoomServlet"><span class="glyphicon glyphicon-usd"></span> Apply Room</a>
+                        <a class="nav-link" href="/ip/GetRoomServlet"><i class="fas fa-edit"></i> Apply Room</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/ip/ViewAppServlet"><span class="glyphicon glyphicon-th-list"></span> View Application</a>
+                        <a class="nav-link" href="/ip/ViewAppServlet"><i class="fas fa-envelope-open-text"></i> View Application</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="glyphicon glyphicon-user"></span> Welcome
+                            <i class="fas fa-user"></i> Welcome
                             <jsp:getProperty name="memberprofile" property="fullName"/>
                             (Member)<b class="caret"></b>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/ip/viewProfileServlet"><span class="glyphicon glyphicon-user"></span> User Profile</a>
-                            <a class="dropdown-item" href="/ip/MemberSettingServlet"><span class="glyphicon glyphicon-cog"></span> Setting</a>
+                            <a class="dropdown-item" href="/ip/viewProfileServlet"><i class="fas fa-user-edit"></i> User Profile</a>
+                            <a class="dropdown-item" href="/ip/MemberSettingServlet"><i class="fas fa-cog"></i> Setting</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/ip/logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                            <a class="dropdown-item" href="/ip/logout.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -139,7 +141,7 @@
         <!-- /.carousel -->
         <script>
             var heightSlider = $('.navbar').height();
-            $('#carousel-2').css({ marginTop : heightSlider + 40 + 'px' });
+            $('#carousel-2').css({ marginTop : heightSlider + 30 + 'px' });
         </script>
     </body>
 </html>

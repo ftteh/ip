@@ -12,7 +12,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import jdbc.JDBCUtility;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  *
@@ -74,19 +74,18 @@ public class viewApp extends HttpServlet {
                 String applicant = rs.getString("applicant");
                 String approval = rs.getString("approval");
                 String room = rs.getString("room");
-               
+                //yyyy-MM-dd HH:mm:ss
+                //parse the date from string for date conversion
                 String bookingdate = rs.getString("bookingdate");
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date = new Date();
                 try {
                    date = formatter.parse(bookingdate);
                 } catch (Exception ex) {}
-
+                
                 //convert to MY format dd-MM-yyyy
                 formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss a");
                 bookingdate = formatter.format(date);
-
-
 
                 Application application = new Application();
                 application.setId(id);
@@ -94,6 +93,7 @@ public class viewApp extends HttpServlet {
                 application.setApproval(approval);
                 application.setRoom(room);
                 application.setBookingdate(bookingdate);
+
                 appList.add(application);
 
             }

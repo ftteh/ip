@@ -8,5 +8,5 @@
 
 <% 
     session.invalidate();
-    response.sendRedirect("/cash/terminate.html"); 
+    response.sendRedirect("/ip/index.html"); 
 %>

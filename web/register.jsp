@@ -5,7 +5,9 @@
     <head>
         <title>Register</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-
+        
+        <!--font awesome-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -258,7 +260,7 @@
 
     <body>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="home.jsp"><span class="glyphicon glyphicon-home"></span>Hostel</a>
+            <a class="navbar-brand" href="home.jsp"><i class="fas fa-bed"></i> Hostel</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -268,10 +270,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/ip/GetRoomServlet"><span class="glyphicon glyphicon-usd"></span> Apply Room</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/ip/ViewAppServlet"><span class="glyphicon glyphicon-th-list"></span> View Application</a>
+                        <a class="nav-link" href="/ip/register.jsp"><i class="fas fa-user-plus"></i> Register</a>
                     </li>
                 </ul>
             </div>
@@ -289,24 +288,35 @@
     
 
                 <div style="clear:both;"></div>
-
-        
-                <div class="group">
-                   <input class="form-control" id="login" name="login" placeholder="Login" type="text" required>
-                 <span class="highlight"></span>
+                <!--<div class="group">
+                    <input class="form-control" id="login" name="login" placeholder="Login" type="text" required>
+                    <span class="highlight"></span>
                     <span class="bar"></span>
                     <label><i class="material-icons input-ikon">person_outline</i><span class="span-input">Login ID</span></label>
-                </div>
- 
+                </div>-->
+                 
                 <div class="group">
+                    <input type="text" id="login" name="login" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label><i class="material-icons input-ikon">person_outline</i><span class="span-input">Username</span></label>
+                </div>
+                
+<!--                <div class="group">
                      <input class="form-control" id="password" name="password" placeholder="Password" type="password" required>
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label><i class="material-icons input-sifre-ikon">lock</i><span class="span-input">Password</span></label>
-                </div>
+                </div>-->
 
+            <div class="group">
+                <input type="password" id="password" name="password" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label><i class="fas fa-lock"></i><span class="span-input">Password</span></label>
+            </div>
 
-                <button type="submit" class="giris-yap-buton"><span class="glyphicon glyphicon-ok"></span> Submit</button>
+                <button type="submit" class="giris-yap-buton"><i class="fas fa-check"></i> Submit</button>
 
             </form>
 

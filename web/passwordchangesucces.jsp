@@ -9,7 +9,7 @@
 <%@ page import="bean.User" %>
 
 <c:if test="${sessionScope.memberprofile != null}">
-    <% response.sendRedirect(request.getContextPath() + "/terminate.html"); %>
+    <% response.sendRedirect(request.getContextPath() + "/index.html"); %>
 </c:if>
 
 <!DOCTYPE html>
@@ -53,26 +53,26 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span> <span style="color:#FFFF00">CashWeb</span></a>
+          <a class="navbar-brand" href="#"><i class="fas fa-bed"></i>  <span style="color:#FFFF00">CashWeb</span></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/ip/GetRoomServlet"><span class="glyphicon glyphicon-usd"></span> Get Cash</a></li>
-            <li><a href="/ip/ViewAppServlet"><span class="glyphicon glyphicon-th-list"></span> View Cash</a></li> 
+            <li><a href="/ip/GetRoomServlet"><i class="fas fa-edit"></i> Get Cash</a></li>
+            <li><a href="/ip/ViewAppServlet"><i class="fas fa-envelope-open-text"></i> View Cash</a></li> 
           </ul>
           <ul class="nav navbar-nav navbar-right">
       		<li class="dropdown">
-		        <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Welcome
+		        <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i> Welcome
                             <c:if test="${sessionScope.memberprofile != null}">
                                 <jsp:useBean id="memberprofile" class="bean.User" scope="session" />
                                 <span style="color:#FFFF00"><jsp:getProperty name="memberprofile" property="fullName"/></span>
                             </c:if>
                             (Member) <b class="caret"></b></a>
 			        <ul class="dropdown-menu">
-			          <li><a href="/ip/memberprofile.jsp"><span class="glyphicon glyphicon-user"></span> User Profile</a></li>
-			          <li><a href="/ip/MemberSettingServlet"><span class="glyphicon glyphicon-cog"></span> Setting</a></li>
+			          <li><a href="/ip/memberprofile.jsp"><i class="fas fa-user-edit"></i> User Profile</a></li>
+			          <li><a href="/ip/MemberSettingServlet"><i class="fas fa-cog"></i> Setting</a></li>
 			          <li class="divider"></li>
-			          <li><a href="/ip/logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+			          <li><a href="/ip/logout.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
 			        </ul>
 		  	</li>
           </ul>

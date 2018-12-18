@@ -21,7 +21,9 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent+Marker">
-  
+   
+  <!--font awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -317,38 +319,30 @@ p a:hover {
 
 <body>
 
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="home.jsp"><span class="glyphicon glyphicon-home"></span>Hostel</a>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="home.jsp"><i class="fas fa-bed"></i> Hostel</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/ip/admin/viewUser"><span class="glyphicon glyphicon-usd"></span>Manage
-            Users</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/ip/admin/viewRoom"><span class="glyphicon glyphicon-th-list"></span>
-            Manage Room</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/ip/admin/viewApp"><span class="glyphicon glyphicon-th-list"></span>
-            Manage Applications</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/ip/admin/viewInit"><span class="glyphicon glyphicon-th-list"></span>
-            Manage Backend</a>
-        </li>
-      </ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                      <a class="nav-link" href="/ip/admin/viewApp"><i class="fas fa-envelope-open-text"></i>
+                          View Applications</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/ip/admin/viewInit"><i class="fas fa-list"></i>
+                          Manage Backend Data</a>
+                  </li>
+              </ul>
       <ul class="nav navbar-nav ml-auto">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            <span class="glyphicon glyphicon-user"></span> Welcome
+            <i class="fas fa-user"></i> Welcome
             <c:if test="${sessionScope.adminprofile != null}">
 
               <span style="color:#FFFF00">
@@ -356,12 +350,12 @@ p a:hover {
             </c:if>
             (Admin) <b class="caret"></b></a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/ip/memberprofile.jsp"><span class="glyphicon glyphicon-user"></span>
+            <a class="dropdown-item" href="/ip/memberprofile.jsp"><i class="fas fa-user-edit"></i>
               User Profile</a>
-            <a class="dropdown-item" href="/ip/MemberSettingServlet"><span class="glyphicon glyphicon-cog"></span>
+            <a class="dropdown-item" href="/ip/MemberSettingServlet"><i class="fas fa-cog"></i>
               Setting</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span>
+            <a class="dropdown-item" href="logout.jsp"><i class="fas fa-sign-out-alt"></i>
               Logout</a>
           </div>
         </li>

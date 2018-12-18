@@ -97,7 +97,7 @@ public class deleteUser extends HttpServlet {
 
         session.setAttribute("userList", userList);
         response.sendRedirect(request.getContextPath() +
-        "/admin/viewUser");
+        "/admin/addtobackend.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the

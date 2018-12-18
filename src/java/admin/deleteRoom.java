@@ -99,7 +99,7 @@ public class deleteRoom extends HttpServlet {
         }
 
         session.setAttribute("roomList", roomList);
-        response.sendRedirect(request.getContextPath() + "/admin/viewroom.jsp");
+        response.sendRedirect(request.getContextPath() + "/admin/addtobackend.jsp");
 
     }
 

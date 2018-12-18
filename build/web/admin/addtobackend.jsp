@@ -16,7 +16,10 @@
 <head>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-
+    
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -25,6 +28,8 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    
+    
     <!------ Include the above in your HEAD tag ---------->
     <style>
         @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
@@ -83,7 +88,7 @@
                 text-decoration:none;
                 color:#fff;
             }
-            h2{
+            h2,td,th {
                 text-align: center;
             }
             </style>
@@ -91,7 +96,7 @@
 <body>
 <div class="container">
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="home.jsp"><span class="glyphicon glyphicon-home"></span>Hostel</a>
+        <a class="navbar-brand" href="home.jsp"><i class="fas fa-bed"></i> Hostel</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,28 +105,20 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/ip/admin/viewUser"><span class="glyphicon glyphicon-usd"></span>Manage
-                        Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/ip/admin/viewRoom"><span class="glyphicon glyphicon-th-list"></span>
-                        Manage Room</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/ip/admin/viewApp"><span class="glyphicon glyphicon-th-list"></span>
-                        Manage Applications</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/ip/admin/viewInit"><span class="glyphicon glyphicon-th-list"></span>
-                        Manage Backend</a>
-                </li>
-            </ul>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/ip/admin/viewApp"><i class="fas fa-envelope-open-text"></i>
+                          View Applications</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/ip/admin/viewInit"><i class="fas fa-list"></i>
+                          Manage Backend Data</a>
+                  </li>
+              </ul>
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        <span class="glyphicon glyphicon-user"></span> Welcome
+                        <i class="fas fa-user"></i> Welcome
                         <c:if test="${sessionScope.adminprofile != null}">
                             <jsp:useBean id="adminprofile" class="bean.User" scope="session" />
                             <span style="color:#FFFF00">
@@ -129,12 +126,12 @@
                         </c:if>
                         (Admin) <b class="caret"></b></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/ip/memberprofile.jsp"><span class="glyphicon glyphicon-user"></span>
+                        <a class="dropdown-item" href="/ip/memberprofile.jsp"><i class="fas fa-user-edit"></i>
                             User Profile</a>
-                        <a class="dropdown-item" href="/ip/MemberSettingServlet"><span class="glyphicon glyphicon-cog"></span>
+                        <a class="dropdown-item" href="/ip/MemberSettingServlet"><i class="fas fa-cog"></i>
                             Setting</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span>
+                        <a class="dropdown-item" href="logout.jsp"><i class="fas fa-sign-out-alt"></i>
                             Logout</a>
                     </div>
                 </li>
@@ -151,7 +148,7 @@
             <div class="col-md-6 login-form-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3>Room List</h3>
+                        <h3 style="color:black;" >Room List</h3>
                     </div>
                     <div class="panel-body">
                         <table class="table table-condensed" style="border-collapse:collapse;">
@@ -159,8 +156,9 @@
                             <thead>
                                 <tr>
                                     <th> </th>
-                                    <th>rid</th>
-                                    <th>action</th>
+                                    <th>Room ID</th>
+                                    <th>Status</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
         
@@ -168,7 +166,7 @@
                                 <c:forEach items="${sessionScope.roomList}" var="currentcurr" varStatus="loop">
         
                                     <tr data-toggle="collapse" data-target="#<c:out value="${currentcurr.college}" /><c:out value="${currentcurr.rid}" />" class="accordion-toggle">
-                                    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>
+                                    <td><button class="btn btn-default btn-xs"><i class="far fa-eye"></i></button></td>
                                     <td>
                                         <c:out value="${currentcurr.rid}" />
                                     </td>
@@ -188,6 +186,12 @@
                                         <td><a href="<c:out value='${upRoom}' />">
                                                 <c:out value="${currentcurr.status}" /></a></td>
                                     </c:if>
+                                        
+                                    <c:url value="deleteRoom" var="displayURL">
+                                    <c:param name="rid" value="${currentcurr.rid}" /> 
+                                    </c:url>
+                                    <td><a href="<c:out value='${displayURL}' />"><i class="fas fa-trash-alt"></i></a></td>
+                                        
                                     </tr>
                                     <tr>
                                         <td colspan="12" class="hiddenRow">
@@ -204,7 +208,7 @@
                                                         <c:out value="${currentcurr.college}" />
                                                     </td>
                                                     <td>
-                                                        RM:<c:out value="${currentcurr.price}" />
+                                                        RM: <c:out value="${currentcurr.price}" />
                                                     </td>
                                                 </tr>
                                             </table>
@@ -226,13 +230,13 @@
                 <form class="form-horizontal" action="/ip/admin/insertRoom" method="post">
                     <fieldset>
                         <div class="form-group">
-                            <label for="rid" class="col-lg-2 control-label">RID</label>
+                            <label for="rid" class="col-lg-2 control-label">RoomID</label>
                             <div class="col-lg-10">
-                                <input class="form-control" id="rid" name="rid" placeholder="rid" type="text" required>
+                                <input class="form-control" id="rid" name="rid" placeholder="M01" type="text" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="status" class="col-lg-2 control-label">status</label>
+                            <label for="status" class="col-lg-2 control-label">Status</label>
                             <div class="col-lg-10">
                                 <select class="form-control" id="status" name="status" required>
                                     <option value="available">available</option>
@@ -241,7 +245,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="fm" class="col-lg-2 control-label">fm</label>
+                            <label for="fm" class="col-lg-2 control-label">Gender</label>
                             <div class="col-lg-10">
                                 <select class="form-control" id="fm" name="fm" required>
                                     <option value="female">female</option>
@@ -250,7 +254,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="type" class="col-lg-2 control-label">type</label>
+                            <label for="type" class="col-lg-2 control-label">Type</label>
                             <div class="col-lg-10">
                                 <select class="form-control" id="type" name="type" required>
                                     <option value="single">single</option>
@@ -259,14 +263,14 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="college" class="col-lg-2 control-label">college</label>
+                            <label for="college" class="col-lg-2 control-label">College</label>
                             <div class="col-lg-10">
-                                <input class="form-control" id="college" name="college" placeholder="college" type="text"
+                                <input class="form-control" id="college" name="college" placeholder="KTDI" type="text"
                                     required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="price" class="col-lg-2 control-label">price</label>
+                            <label for="price" class="col-lg-2 control-label">Price</label>
                             <div class="col-lg-10">
                                 <input class="form-control" id="price" name="price" placeholder="price" type="text" required>
                             </div>
@@ -290,7 +294,7 @@
                 <div class="col-md-6 login-form-1">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3>User List</h3>
+                            <h3 style="color:black;">User List</h3>
                         </div>
                         <div class="panel-body">
                             <table class="table table-condensed" style="border-collapse:collapse;">
@@ -298,8 +302,9 @@
                                 <thead>
                                     <tr>
                                         <th> </th>
-                                        <th>login</th>
-                                        <th>password</th>
+                                        <th>Username</th>
+                                        <th>Password</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
             
@@ -308,14 +313,17 @@
             
                                         <tr data-toggle="collapse" data-target="#<c:out value="${currentcurr.fullName}" /><c:out value="${currentcurr.login}" />"
                                         class="accordion-toggle">
-                                        <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>
+                                        <td><button class="btn btn-default btn-xs"><i class="far fa-eye"></i></button></td>
                                         <td>
                                             <c:out value="${currentcurr.login}" />
                                         </td>
                                         <td>
                                             <c:out value="${currentcurr.password}" />
                                         </td>
-            
+                                        <c:url value="deleteUser" var="displayURL">
+                                            <c:param name="login" value="${currentcurr.login}" /> 
+                                        </c:url>
+                                        <td><a href="<c:out value='${displayURL}' />"><i class="fas fa-user-slash"></i></a></td>
                                         </tr>
                                         <tr>
                                             <td colspan="12" class="hiddenRow">
@@ -326,10 +334,10 @@
                                                             Type: <c:out value="${currentcurr.userType}" />
                                                         </td>
                                                         <td>
-                                                            fName:<c:out value="${currentcurr.fullName}" />
+                                                            Name: <c:out value="${currentcurr.fullName}" />
                                                         </td>
                                                         <td>
-                                                            Image:<c:out value="${currentcurr.image}" />
+                                                            Image: <c:out value="${currentcurr.image}" />
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -351,21 +359,21 @@
                         <form class="form-horizontal" action="/ip/admin/insertUser" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <label for="login" class="col-lg-2 control-label">login</label>
+                                    <label for="login" class="col-lg-2 control-label">Username</label>
                                     <div class="col-lg-10">
                                         <input class="form-control" id="login" name="login" placeholder="login" type="text"
                                             required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password" class="col-lg-2 control-label">password</label>
+                                    <label for="password" class="col-lg-2 control-label">Password</label>
                                     <div class="col-lg-10">
                                         <input class="form-control" id="password" name="password" placeholder="password"
                                             type="text" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="usertype" class="col-lg-2 control-label">usertype</label>
+                                    <label for="usertype" class="col-lg-2 control-label">Type</label>
                                     <div class="col-lg-10">
                                         <select class="form-control" id="usertype" name="usertype" required>
                                             <option value="admin">admin</option>
@@ -374,9 +382,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="fullname" class="col-lg-2 control-label">fullname</label>
+                                    <label for="fullname" class="col-lg-2 control-label">Name</label>
                                     <div class="col-lg-10">
-                                        <input class="form-control" id="fullname" name="fullname" placeholder="fullname"
+                                        <input class="form-control" id="fullname" name="fullname" placeholder="name"
                                             type="text" required>
                                     </div>
                                 </div>
@@ -396,7 +404,7 @@
 
 
 
-            <div class="row">
+<!--            <div class="row">
                     <div class="col-md-6 login-form-1">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -525,7 +533,7 @@
                     </div>
                 
                 </div>
-                </div>
+                </div>-->
      
        
        

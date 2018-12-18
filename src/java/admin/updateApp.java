@@ -118,6 +118,16 @@ public class updateApp extends HttpServlet {
                     }
                 }
             }
+            sqlUpdate = "UPDATE room SET status= ? WHERE rid = ?"; 
+        
+            try {
+                PreparedStatement preparedStatement = con.prepareStatement(sqlUpdate);
+                preparedStatement.setString(1, "owned");
+                preparedStatement.setString(2, ownedRoom);
+                preparedStatement.executeUpdate();
+            }
+            catch (SQLException ex) {            
+            }
         }
         appList = new ArrayList();
 
@@ -146,12 +156,8 @@ public class updateApp extends HttpServlet {
         }
 
         session.setAttribute("appList", appList);
-        if (request.getParameter("approval").equals("approved")) {
-            response.sendRedirect(request.getContextPath() + "/updateRoomStatus?rid="+ownedRoom+"&status=owned");
-        }
-        else{
-            response.sendRedirect(request.getContextPath() + "/admin/addtobackend.jsp");
-        }
+
+        response.sendRedirect(request.getContextPath() + "/admin/viewapp.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
