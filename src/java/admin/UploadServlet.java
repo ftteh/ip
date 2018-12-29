@@ -137,7 +137,7 @@ public class UploadServlet extends HttpServlet {
             request.setAttribute("adminprofile", user);
              
             // redirect to member profile page
-            response.sendRedirect(request.getContextPath() + "/viewProfileServlet");  
+            response.sendRedirect(request.getContextPath() + "/admin/viewProfileServlet");  
         }
     }
 
