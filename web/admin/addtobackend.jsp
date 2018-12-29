@@ -377,7 +377,7 @@
                                     <div class="col-lg-10">
                                         <select class="form-control" id="usertype" name="usertype" required>
                                             <option value="admin">admin</option>
-                                            <option value="normal">normal</option>
+                                            <option value="client">normal</option>
                                         </select>
                                     </div>
                                 </div>

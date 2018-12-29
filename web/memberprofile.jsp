@@ -167,7 +167,7 @@ label, input {
             </div>
                 </form>    
                 
-                <form id="formedit" action="/ip/updateProfile" method="POST">
+                <form id="formedit" action="updateProfile" method="POST">
                 <div class="input-group">
                          <label for="fullname">FULL NAME</label>
                          <input type="text" id="fullname" name="fullname" placeholder="${memberprofile.getFullName()}"  class="form-control" >
@@ -193,7 +193,7 @@ label, input {
                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
             </div>
             <div class="modal-body">  
-                <form id="formchangepassword" action="/ip/updateProfile" method="POST">
+                <form id="formchangepassword" action="updateProfile" method="POST">
 
                     <label for="oldpassword">Old Password</label>
                     <input type="password" class="form-control" name="oldpassword" id="oldpassword" placeholder="Enter Old Password" >                    

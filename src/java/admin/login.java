@@ -68,7 +68,7 @@ public class login extends HttpServlet {
         
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        String userType = "", fullName = "", image = "";
+        String userType = "", fullName = "", image = "",email="";
         
         String sqlQuery = "SELECT * FROM user WHERE login = ? AND password = ? AND usertype = 'admin'";
         
@@ -82,12 +82,14 @@ public class login extends HttpServlet {
                 userType = rs.getString("usertype");
                 fullName = rs.getString("fullname");
                 image = rs.getString("image");
+                email = rs.getString("email");
                 
                 user = new User();
                 user.setLogin(login);
                 user.setFullName(fullName);
                 user.setUserType(userType);
                 user.setImage(image);
+                user.setEmail(email);
             }
         }
         catch (SQLException ex) {            
