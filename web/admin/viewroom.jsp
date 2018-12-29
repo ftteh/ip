@@ -136,7 +136,7 @@
                         </c:if>
                         (Admin) <b class="caret"></b></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/ip/memberprofile.jsp"><i class="fas fa-user-edit"></i>
+                        <a class="dropdown-item" href="/ip/admin/memberprofile.jsp"><i class="fas fa-user-edit"></i>
                             User Profile</a>
                         <a class="dropdown-item" href="/ip/MemberSettingServlet"><i class="fas fa-cog"></i>
                             Setting</a>

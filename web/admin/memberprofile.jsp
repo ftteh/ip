@@ -1,5 +1,5 @@
 <%-- 
-    Document   : memberprofile
+    Document   : adminprofile
     Created on : Nov 9, 2014, 11:45:53 AM
     Author     : MSI
 --%>
@@ -9,11 +9,11 @@
 <%@ page import="bean.User" %>
 
 
-<%--<c:if test="${sessionScope.memberprofile != null}">
+<%--<c:if test="${sessionScope.adminprofile != null}">
     <% response.sendRedirect(request.getContextPath() + "/index.html"); %>
 </c:if>--%>
 
-<jsp:useBean id="memberprofile" class="bean.User" scope="session" ></jsp:useBean>
+<jsp:useBean id="adminprofile" class="bean.User" scope="session" ></jsp:useBean>
 
 <!DOCTYPE html>
 <html>
@@ -71,39 +71,48 @@ label, input {
     </head>
     <body>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="home.jsp"><i class="fas fa-bed"></i> Hostel</a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/ip/GetRoomServlet"><i class="fas fa-edit"></i> Apply Room</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/ip/ViewAppServlet"><i class="fas fa-envelope-open-text"></i> View Application</a>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav ml-auto">
+            <a class="navbar-brand" href="home.jsp"><i class="fas fa-bed"></i> Hostel</a>
+    
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                      <li class="nav-item">
+                          <a class="nav-link" href="/ip/admin/viewApp"><i class="fas fa-envelope-open-text"></i>
+                              View Applications</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/ip/admin/viewInit"><i class="fas fa-list"></i>
+                              Manage Backend Data</a>
+                      </li>
+                  </ul>
+          <ul class="nav navbar-nav ml-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user"></i> Welcome
-                    <jsp:getProperty name="memberprofile" property="fullName"/>
-                    (Member)<b class="caret"></b>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/ip/viewProfileServlet"><i class="fas fa-user-edit"></i> User Profile</a>
-                    <a class="dropdown-item" href="/ip/MemberSettingServlet"><i class="fas fa-cog"></i> Setting</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/ip/logout.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                </div>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user"></i> Welcome
+                <c:if test="${sessionScope.adminprofile != null}">
+    
+                  <span style="color:#FFFF00">
+                    <jsp:getProperty name="adminprofile" property="fullName" /></span>
+                </c:if>
+                (Admin) <b class="caret"></b></a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/ip/admin/memberprofile.jsp"><i class="fas fa-user-edit"></i>
+                  User Profile</a>
+                <a class="dropdown-item" href="/ip/MemberSettingServlet"><i class="fas fa-cog"></i>
+                  Setting</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="logout.jsp"><i class="fas fa-sign-out-alt"></i>
+                  Logout</a>
+              </div>
             </li>
-        </ul>
-    </div>
-</nav>
+          </ul>
+        </div>
+      </nav>
         <section class="login-block">
             <div class="container">
             <div>
@@ -111,23 +120,23 @@ label, input {
                     <h2 class="text-center">User Profile</h2>
              
                <div class="input-group">
-                 <img src="data:image/jpg;base64,${memberprofile.image}" width="160" height="200" class="imageStyle"/>       
+                 <img src="data:image/jpg;base64,${adminprofile.image}" width="160" height="200" class="imageStyle"/>       
                </div>
          
             <br/>
             <div class="input-group">
                 <label for="name">USERNAME</label>
-                <input type="text" id="username" value="<jsp:getProperty name="memberprofile" property="login"/>" class="form-control" placeholder="" readonly>
+                <input type="text" id="username" value="<jsp:getProperty name="adminprofile" property="login"/>" class="form-control" placeholder="" readonly>
             </div>
             
             <div class="input-group">
                 <label for="name">FULL NAME</label>
-                <input type="text" id="fullname" value="<jsp:getProperty name="memberprofile" property="fullName"/>"  class="form-control" placeholder="" readonly>
+                <input type="text" id="fullname" value="<jsp:getProperty name="adminprofile" property="fullName"/>"  class="form-control" placeholder="" readonly>
              </div>
                
             <div class="input-group">
                 <label for="email">EMAIL</label>
-                <input type="email" id="email" value="<jsp:getProperty name="memberprofile" property="email"/>" class="form-control" placeholder="" readonly>
+                <input type="email" id="email" value="<jsp:getProperty name="adminprofile" property="email"/>" class="form-control" placeholder="" readonly>
              </div>
              <br/>
             <div class="col-md-6 btn-menu" >   
@@ -153,10 +162,10 @@ label, input {
             <div class="modal-body">  
                 
                 <div class="input-group">
-                 <img src="data:image/jpg;base64,${memberprofile.image}" width="160" height="200" class="imageStyle"/>       
+                 <img src="data:image/jpg;base64,${adminprofile.image}" width="160" height="200" class="imageStyle"/>       
                </div>
                
-                 <form action = "UploadServlet" method = "post"  enctype = "multipart/form-data">
+                 <form action = "/ip/admin/UploadServlet" method = "post"  enctype = "multipart/form-data">
                 <div class="input-group">
                     <input type="file" id="image" name="image" class="form-control" >
                  </div>
@@ -167,14 +176,14 @@ label, input {
             </div>
                 </form>    
                 
-                <form id="formedit" action="/ip/updateProfile" method="POST">
+                <form id="formedit" action="/ip/admin/updateProfile" method="POST">
                 <div class="input-group">
                          <label for="fullname">FULL NAME</label>
-                         <input type="text" id="fullname" name="fullname" placeholder="${memberprofile.getFullName()}"  class="form-control" >
+                         <input type="text" id="fullname" name="fullname" placeholder="${adminprofile.getFullName()}"  class="form-control" >
                 </div>
                  <div class="input-group">
                          <label for="email">EMAIL</label>
-                         <input type="text" id="email"  name="email" placeholder="${memberprofile.getEmail()}" class="form-control">   
+                         <input type="text" id="email"  name="email" placeholder="${adminprofile.getEmail()}" class="form-control">   
                 </form>
                 </div>
                 <div class="modal-footer ">
@@ -193,7 +202,7 @@ label, input {
                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
             </div>
             <div class="modal-body">  
-                <form id="formchangepassword" action="/ip/updateProfile" method="POST">
+                <form id="formchangepassword" action="/ip/admin/updateProfile" method="POST">
 
                     <label for="oldpassword">Old Password</label>
                     <input type="password" class="form-control" name="oldpassword" id="oldpassword" placeholder="Enter Old Password" >                    

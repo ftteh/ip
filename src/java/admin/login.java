@@ -98,7 +98,7 @@ public class login extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/admin/home.jsp");
         }
         else {
-            response.sendRedirect(request.getContextPath() + "/not-exist.html");
+            response.sendRedirect(request.getContextPath() + "/admin/not-exist.html");
         }            
     }
 
