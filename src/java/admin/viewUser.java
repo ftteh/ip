@@ -85,7 +85,7 @@ public class viewUser extends HttpServlet {
         }
 
         session.setAttribute("userList", userList);
-        response.sendRedirect(request.getContextPath() + "/admin/viewusers.jsp");
+        response.sendRedirect(request.getContextPath() + "/admin/addtobackend.jsp");
 
     }
 

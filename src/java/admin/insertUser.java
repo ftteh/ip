@@ -72,9 +72,14 @@ public class insertUser extends HttpServlet {
         String usertype=request.getParameter("usertype");
         String fullname=request.getParameter("fullname");
 
+        PrintWriter out=response.getWriter();
+                        out.println(login);
+                 out.println(password);
+                 out.println(usertype);
+                 out.println(fullname);
         
-        String sqlInsert = "INSERT INTO user(login,password,usertype,fullname) VALUES(?, ?, ?,?)"; 
-        
+        String sqlInsert = "INSERT INTO user(login,password,usertype,fullname,image) VALUES(?, ?, ?,?,?)"; 
+//        
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sqlInsert);
 
@@ -82,8 +87,9 @@ public class insertUser extends HttpServlet {
             preparedStatement.setString(2, password);
             preparedStatement.setString(3, usertype);
             preparedStatement.setString(4, fullname);
+            preparedStatement.setString(5, fullname);
             preparedStatement.executeUpdate();
-            PrintWriter out = response.getWriter();
+     
 
 
             String sqlQuery = "SELECT * FROM user ";
@@ -124,7 +130,7 @@ public class insertUser extends HttpServlet {
         }
         session.setAttribute("userList", userList);
         response.sendRedirect(request.getContextPath() +
-        "/admin/addtobackend.jsp");
+        "/admin/viewUser");
         
     }
 
