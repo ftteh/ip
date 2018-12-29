@@ -88,7 +88,7 @@ public class login extends HttpServlet {
                 user.setLogin(login);
                 user.setFullName(fullName);
                 user.setUserType(userType);
-                user.setImage(image);
+                 user.setImage(image);
                 user.setEmail(email);
             }
         }
