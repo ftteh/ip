@@ -336,9 +336,7 @@
                                                         <td>
                                                             Name: <c:out value="${currentcurr.fullName}" />
                                                         </td>
-                                                        <td>
-                                                            Image: <c:out value="${currentcurr.image}" />
-                                                        </td>
+
                                                     </tr>
                                                 </table>
             
