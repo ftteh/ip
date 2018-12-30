@@ -10,7 +10,7 @@
 
 
 <%--<c:if test="${sessionScope.memberprofile != null}">
-    <% response.sendRedirect(request.getContextPath() + "/index.html"); %>
+    <% response.sendRedirect(request.getContextPath() + "/terminate.html"); %>
 </c:if>--%>
 
 <jsp:useBean id="memberprofile" class="bean.User" scope="session" ></jsp:useBean>
@@ -23,10 +23,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <!--font awesome-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 
 </head>
 
@@ -70,40 +71,41 @@ label, input {
         </style>
     </head>
     <body>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="home.jsp"><i class="fas fa-bed"></i> Hostel</a>
+          <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="home.jsp"><i class="fas fa-bed"></i> Hostel</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/ip/GetRoomServlet"><i class="fas fa-edit"></i> Apply Room</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/ip/ViewAppServlet"><i class="fas fa-envelope-open-text"></i> View Application</a>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user"></i> Welcome
-                    <jsp:getProperty name="memberprofile" property="fullName"/>
-                    (Member)<b class="caret"></b>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/ip/viewProfileServlet"><i class="fas fa-user-edit"></i> User Profile</a>
-                    <a class="dropdown-item" href="/ip/MemberSettingServlet"><i class="fas fa-cog"></i> Setting</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/ip/logout.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-</nav>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ip/GetRoomServlet"><i class="fas fa-edit"></i> Apply Room</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ip/ViewAppServlet"><i class="fas fa-envelope-open-text"></i> View Application</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i> Welcome
+                            <jsp:getProperty name="memberprofile" property="fullName"/>
+                            (Member)<b class="caret"></b>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/ip/viewProfileServlet"><i class="fas fa-user-edit"></i> User Profile</a>
+                            <a class="dropdown-item" href="/ip/MemberSettingServlet"><i class="fas fa-cog"></i> Setting</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/ip/logout.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
         <section class="login-block">
             <div class="container">
             <div>
@@ -130,7 +132,7 @@ label, input {
                 <input type="email" id="email" value="<jsp:getProperty name="memberprofile" property="email"/>" class="form-control" placeholder="" readonly>
              </div>
              <br/>
-            <div class="col-md-6 btn-menu" >   
+            <div class="col-md-12 btn-menu" style="margin-right: 40%;margin-left: 50%">   
                  <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#edit" >Edit Profile</button>
                 <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#changepassword">Change Password</button>
 
@@ -196,11 +198,11 @@ label, input {
                 <form id="formchangepassword" action="updateProfile" method="POST">
 
                     <label for="oldpassword">Old Password</label>
-                    <input type="password" class="form-control" name="oldpassword" id="oldpassword" placeholder="Enter Old Password" >                    
+                    <input type="password" class="form-control" name="oldpassword" id="oldpassword" placeholder="Enter Old Password" required>                    
                     <label for="newpassword">New Password</label>
-                    <input type="password" class="form-control" name="newpassword" id="newpassword" placeholder="Enter New Password">    
+                    <input type="password" class="form-control" name="newpassword" id="newpassword" placeholder="Enter New Password"required>    
                     <label for="cnewpassword">Confirm New Password</label>
-                    <input type="password" class="form-control" name="cnewpassword" id="cnewpassword" placeholder="Enter Confirmed Password">    
+                    <input type="password" class="form-control" name="cnewpassword" id="cnewpassword" placeholder="Enter Confirmed Password" required>    
                 </form>
             </div>
             <div class="modal-footer">
@@ -210,6 +212,52 @@ label, input {
         </div>
     </div>
 </div>
+<div id="message" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin-top:100px">
+
+        <c:if test="${not empty changeSuccess&&empty updateProfile}">
+          
+            <div class="alert alert-success"
+            <p>${changeSuccess}</p>
+            </div>     
+             
+        </c:if>
+        <c:if test="${not empty passNotMatch}">
+            <div class="alert alert-danger">
+                <span><i class="fa fa-exclamation-circle"></i></span> ${passNotMatch}
+            </div>
+         
+        </c:if>
+         <c:if test="${not empty updateProfile&&empty changeSuccess}">
+              
+            <div class="alert alert-success">
+                <span><i class="fa fa-exclamation-circle"></i></span> ${updateProfile}
+            </div>
+        </c:if>
+        <c:if test="${not empty updateProfile&&not empty changeSuccess &&not empty uploadSuccess}">
+              
+            <div class="alert alert-success">
+                <span><i class="fa fa-exclamation-circle"></i></span>  Updated successfully!
+            </div>
+        </c:if>
+        <c:if test="${not empty uploadSuccess&&empty updateProfile&& empty changeSuccess}">
+            <div class="alert alert-success">
+                <span><i class="fa fa-exclamation-circle"></i></span> ${uploadSuccess}
+            </div>
+        </c:if>
+
+    </div>
+</div>
+                
+ <c:if test="${not empty passNotMatch || not empty changeSuccess|| not empty updateProfile|| not empty uploadSuccess}">
+    <script>
+
+        $().ready(function () {
+            $('#message').modal('show');
+           
+        });
+    </script>
+</c:if>
 </body>
 </html>
 
