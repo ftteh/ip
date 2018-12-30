@@ -7,8 +7,6 @@
             <file>file:/C:/Users/TFT/Documents/NetBeansProjects/ip/web/admin/index.html</file>
             <file>file:/C:/Users/TFT/Documents/NetBeansProjects/ip/web/admin/logout.jsp</file>
             <file>file:/C:/Users/TFT/Documents/NetBeansProjects/ip/web/index.html</file>
-            <file>file:/C:/Users/TFT/Documents/NetBeansProjects/ip/web/admin/memberprofile.jsp</file>
-            <file>file:/C:/Users/TFT/Documents/NetBeansProjects/ip/src/java/admin/updateProfile.java</file>
             <file>file:/C:/Users/TFT/Documents/NetBeansProjects/ip/web/home.jsp</file>
             <file>file:/C:/Users/TFT/Documents/NetBeansProjects/ip/src/java/admin/updateApp.java</file>
             <file>file:/C:/Users/TFT/Documents/NetBeansProjects/ip/src/java/member/viewProfileServlet.java</file>
@@ -18,7 +16,6 @@
             <file>file:/C:/Users/TFT/Documents/NetBeansProjects/ip/web/admin/viewusers.jsp</file>
             <file>file:/C:/Users/TFT/Documents/NetBeansProjects/ip/src/java/admin/login.java</file>
             <file>file:/C:/Users/TFT/Documents/NetBeansProjects/ip/src/java/member/LoginServlet.java</file>
-            <file>file:/C:/Users/TFT/Documents/NetBeansProjects/ip/src/java/admin/viewProfileServlet.java</file>
         </group>
     </open-files>
 </project-private>

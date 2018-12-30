@@ -129,11 +129,6 @@
                           </c:if>
                           (Admin) <b class="caret"></b></a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="/ip/admin/viewProfileServlet"><i class="fas fa-user-edit"></i>
-                              User Profile</a>
-                          <a class="dropdown-item" href="/ip/MemberSettingServlet"><i class="fas fa-cog"></i>
-                              Setting</a>
-                          <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="logout.jsp"><i class="fas fa-sign-out-alt"></i>
                               Logout</a>
                       </div>

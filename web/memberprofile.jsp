@@ -132,7 +132,7 @@ label, input {
                 <input type="email" id="email" value="<jsp:getProperty name="memberprofile" property="email"/>" class="form-control" placeholder="" readonly>
              </div>
              <br/>
-            <div class="col-md-12 btn-menu" style="margin-right: 40%;margin-left: 50%">   
+            <div class="col-md-6 btn-menu" ">   
                  <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#edit" >Edit Profile</button>
                 <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#changepassword">Change Password</button>
 
