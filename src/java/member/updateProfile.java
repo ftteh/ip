@@ -79,8 +79,8 @@ public class updateProfile extends HttpServlet{
                 if(oldpass != null && newpass != null && cnewpass != null){
             // Check if 2 new password match or not. Can be done in front end but need front end UI to display maybe? 
                  if(!newpass.equals(cnewpass)){
-                      request.setAttribute("passNotMatch", "New password does not match with confirm password");
-                     //response.sendRedirect(request.getContextPath() + "/memberprofile.jsp");  
+                      session.setAttribute("passNotMatch", "New password does not match with confirm password");
+                     response.sendRedirect(request.getContextPath() + "/memberprofile.jsp");  
                  }
                  else // If new password matched then call changePassword method
                      changePassword(request, response);
@@ -114,8 +114,15 @@ public class updateProfile extends HttpServlet{
                  PreparedStatement preparedStatement = con.prepareStatement(sql);
                  preparedStatement.setString(1, fullname);
                  preparedStatement.setString(2, email);
-                 preparedStatement.executeUpdate();
-                 
+                 int row=preparedStatement.executeUpdate();
+                 if(row>0)
+      {
+          session.setAttribute("updateProfile","Information has been updated successfully");
+      }
+      else
+      {
+           session.setAttribute("updateProfile","Information update failed");
+      }
        }catch(SQLException ex){}
        
        // to reflect data changed immediately after update 
@@ -135,8 +142,8 @@ public class updateProfile extends HttpServlet{
        
        // Check if old password matched or not
        if(!oldPass.equals(confirmOldPass)){
-           request.setAttribute("passNotMatch", "Old password entered does not match with database");
-            //response.sendRedirect(request.getContextPath() + "/memberprofile.jsp");  
+           session.setAttribute("passNotMatch", "Old password entered does not match with previous password");
+            response.sendRedirect(request.getContextPath() + "/memberprofile.jsp");  
        }
        else{
             String newpass = request.getParameter("newpassword");
@@ -155,8 +162,8 @@ public class updateProfile extends HttpServlet{
             User user = (User)session.getAttribute("memberprofile");
             user.setPassword(newpass);
             session.setAttribute("memberprofile", user);
-            //request.setAttribute("passNotMatch", "");
-            request.setAttribute("changeSuccess", "Password updated successfully!");
+            session.setAttribute("passNotMatch", "");
+            session.setAttribute("changeSuccess", "Password updated successfully!");
             response.sendRedirect(request.getContextPath() + "/memberprofile.jsp"); 
        }
    }

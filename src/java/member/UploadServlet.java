@@ -93,8 +93,7 @@ public class UploadServlet extends HttpServlet {
             // constructs SQL statement
             String sql = "UPDATE user SET image=? WHERE login=?";
             PreparedStatement statement = con.prepareStatement(sql);
-            
-            
+                        
             if (inputStream != null) {
                 // fetches input stream of the upload file for the blob column
                 statement.setBlob(1, inputStream);
@@ -102,7 +101,15 @@ public class UploadServlet extends HttpServlet {
             statement.setString(2,ulogin);
             // sends the statement to the database server
             int row = statement.executeUpdate();
-            
+            if(row>0)
+            {
+                session.setAttribute("uploadSuccess","Image has been successfully uploaded");
+            }
+            else
+            {
+               session.setAttribute("uploadSuccess","Image failed to upload");
+               response.sendRedirect(request.getContextPath()+"/memberprofile.jsp");
+            }
         } catch (SQLException ex) {
             message = "ERROR: " + ex.getMessage();
             ex.printStackTrace();
@@ -135,7 +142,7 @@ public class UploadServlet extends HttpServlet {
             user.setImage(base64Image);
             // sets the message in request scope
             request.setAttribute("memberprofile", user);
-             
+           
             // redirect to member profile page
             response.sendRedirect(request.getContextPath() + "/viewProfileServlet");  
         }
