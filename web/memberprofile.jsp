@@ -53,7 +53,10 @@ padding: 150px;
 .btn-login{background: #DE6262; color:#fff; font-weight:600;}
 .btn-upload{background: bisque; color:black; font-weight:600; width: 20px;}
 .imageStyle{ margin-left:auto;
-    margin-right:auto;}
+    margin-right:auto;
+    width:180px;
+    height:200px;
+}
 
 .input-group {
     margin-top:10px;
@@ -113,7 +116,8 @@ label, input {
                     <h2 class="text-center">User Profile</h2>
              
                <div class="input-group">
-                 <img src="data:image/jpg;base64,${memberprofile.image}" width="160" height="200" class="imageStyle"/>       
+                   <c:set var="photo" value="${memberprofile.getImage()}"/>
+               <img src="img/profile/${photo}" class="imageStyle">
                </div>
          
             <br/>
@@ -132,7 +136,7 @@ label, input {
                 <input type="email" id="email" value="<jsp:getProperty name="memberprofile" property="email"/>" class="form-control" placeholder="" readonly>
              </div>
              <br/>
-            <div class="col-md-6 btn-menu" ">   
+            <div class="col-md-6 btn-menu">   
                  <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#edit" >Edit Profile</button>
                 <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#changepassword">Change Password</button>
 
@@ -155,8 +159,9 @@ label, input {
             <div class="modal-body">  
                 
                 <div class="input-group">
-                 <img src="data:image/jpg;base64,${memberprofile.image}" width="160" height="200" class="imageStyle"/>       
-               </div>
+                    
+                   <img src="img/profile/<c:out value='${memberprofile.getImage()}'/>"  class="imageStyle">
+                </div>
                
                  <form action = "UploadServlet" method = "post"  enctype = "multipart/form-data">
                 <div class="input-group">
@@ -215,7 +220,7 @@ label, input {
 <div id="message" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="margin-top:100px">
 
-        <c:if test="${not empty changeSuccess&&empty updateProfile}">
+        <c:if test="${not empty changeSuccess}">
           
             <div class="alert alert-success"
             <p>${changeSuccess}</p>
@@ -228,28 +233,11 @@ label, input {
             </div>
          
         </c:if>
-         <c:if test="${not empty updateProfile&&empty changeSuccess}">
-              
-            <div class="alert alert-success">
-                <span><i class="fa fa-exclamation-circle"></i></span> ${updateProfile}
-            </div>
-        </c:if>
-        <c:if test="${not empty updateProfile&&not empty changeSuccess &&not empty uploadSuccess}">
-              
-            <div class="alert alert-success">
-                <span><i class="fa fa-exclamation-circle"></i></span>  Updated successfully!
-            </div>
-        </c:if>
-        <c:if test="${not empty uploadSuccess&&empty updateProfile&& empty changeSuccess}">
-            <div class="alert alert-success">
-                <span><i class="fa fa-exclamation-circle"></i></span> ${uploadSuccess}
-            </div>
-        </c:if>
-
+    
     </div>
 </div>
                 
- <c:if test="${not empty passNotMatch || not empty changeSuccess|| not empty updateProfile|| not empty uploadSuccess}">
+ <c:if test="${not empty passNotMatch || not empty changeSuccess}">
     <script>
 
         $().ready(function () {
