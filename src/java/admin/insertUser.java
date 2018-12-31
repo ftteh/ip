@@ -78,7 +78,7 @@ public class insertUser extends HttpServlet {
                  out.println(usertype);
                  out.println(fullname);
         
-        String sqlInsert = "INSERT INTO user(login,password,usertype,fullname,image) VALUES(?, ?, ?,?,?)"; 
+        String sqlInsert = "INSERT INTO user(login,password,usertype,fullname,image,email) VALUES(?, ?, ?,?,?,?)"; 
 //        
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sqlInsert);
@@ -88,6 +88,7 @@ public class insertUser extends HttpServlet {
             preparedStatement.setString(3, usertype);
             preparedStatement.setString(4, fullname);
             preparedStatement.setString(5, fullname);
+            preparedStatement.setString(6, fullname);
             preparedStatement.executeUpdate();
      
 
