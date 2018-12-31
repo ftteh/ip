@@ -119,10 +119,8 @@ public class UploadServlet extends HttpServlet {
         User user = (User)session.getAttribute("memberprofile");
         user.setImage(fileName);
         session.setAttribute("memberprofile", user);
+        response.sendRedirect(request.getContextPath()+"/memberprofile.jsp");
         
-        response.sendRedirect("viewProfileServlet");
-        
-                
     }
     
     /**
