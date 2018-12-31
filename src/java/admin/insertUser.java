@@ -107,11 +107,7 @@ public class insertUser extends HttpServlet {
                fullname = rs.getString("fullname");
                String image = rs.getString("image");
 
-                // out.println(login);
-                // out.println(password);
-                // out.println(usertype);
-                // out.println(fullname);
-                // out.println(image);
+
 
                 User user = new User();
                 user.setLogin(login);

@@ -67,14 +67,16 @@ public class RegisterServlet extends HttpServlet {
         String fullName = request.getParameter("fullname");
         String userType = "client";
         
-        String sqlInsert = "INSERT INTO user(login, password, usertype, fullname) VALUES(?, ?, ?, ?)"; 
+        String sqlInsert = "INSERT INTO user(login, password, usertype, fullname,image,email) VALUES(?, ?, ?, ?,?,?)"; 
         
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sqlInsert);
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
             preparedStatement.setString(3, userType);
-            preparedStatement.setString(4, fullName);
+            preparedStatement.setString(4, login);
+            preparedStatement.setString(5, login);
+            preparedStatement.setString(6, login);
             preparedStatement.executeUpdate();
             
             User user = new User();
@@ -90,7 +92,7 @@ public class RegisterServlet extends HttpServlet {
             //only session
             HttpSession session = request.getSession();
             session.setAttribute("newuser", user);
-            response.sendRedirect(request.getContextPath() + "/regsuccess.jsp");
+            response.sendRedirect(request.getContextPath() + "/index.html");
         }
         catch (SQLException ex) {            
         }
